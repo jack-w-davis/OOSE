@@ -1,0 +1,2 @@
+ -- Do emails need to be unique? As in no user can have the same email?
+    or do emails just have to be unique to each person.
