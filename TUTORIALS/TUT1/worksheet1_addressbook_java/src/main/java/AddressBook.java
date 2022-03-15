@@ -1,4 +1,4 @@
-// package edu.curtin.addressbook;
+package edu.curtin.addressbook;
 
 import java.util.*;
 
@@ -13,24 +13,22 @@ public class AddressBook
 
     public AddressBook()
     {
-        addresses = new HashMap<String,Entry>();
+        addresses = new HashMap<>();
     }
 
-    public void addNewEntry(String inName, String... inEmails)
+    public void addNewEntry(String inName, List<String> inEmails)
     {
-        //TODO: Add exceptions here
-        //if name isn't present
-        if(! addresses.containsKey(inName))
+        //If entry already exists
+        if(addresses.containsKey(inName))
         {
-            Entry e = new Entry(inName);
-
-            e.addEmails(inEmails);
-
-            addresses.put(inName,e);
+            System.out.println(inName + " already present!");
         }
+        //if name isn't present
         else
         {
-            //TODO: throw exception here
+            Entry e = new Entry(inName);
+            e.addEmails(inEmails);
+            addresses.put(inName,e);
         }
     }
 

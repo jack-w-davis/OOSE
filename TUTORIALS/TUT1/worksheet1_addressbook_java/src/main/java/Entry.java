@@ -1,15 +1,15 @@
-// package edu.curtin.addressbook;
+package edu.curtin.addressbook;
 
 import java.util.*;
         
 /**
  * Represents a single address book entry.
  * 
- * @author ...
+ * @author Jack Davis
  */
 public class Entry 
 {
-    private Set<String> emails = new HashSet<String>();
+    private Set<String> emails = new HashSet<>();
 
     private String name;
 
@@ -20,25 +20,28 @@ public class Entry
 
     private void setName(String inName)
     {
+        //Invalid name
+        if((inName == null || inName.equals("") ))
+        {
+            System.out.println("Error: Name cannot be blank");
+        }
         //Name is valid
-        if(!(inName == null || inName.equals("") ))
+        else
         {
             name = inName;
         }
-        else
-        {
-            //TODO: throw exception here, catch it in calling class???
-        }
     }
 
-    public void addEmails(String[] inEmails)
+    public void addEmails(List<String> inEmails)
     {
         for(String emailToAdd: inEmails)
         {
             //if the email isn't present already
             if(! emails.add(emailToAdd) )
             {
-                //TODO: Throw exception here
+                System.out.printf(
+                    "%s: '%s' email already present, duplicate ignored\n",
+                    name,emailToAdd);
             }
         }
     }
@@ -48,17 +51,15 @@ public class Entry
         return name;
     }
  
-    //TODO: Change me or justify me later
     public List<String> getEmails()
     {
         return new LinkedList<>(emails);
     }
 
+    @Override
     public String toString()
     {
-        String retval = null;
-
-        retval =  getName() + " : ";
+        String retval = getName() + " : ";
 
         for(String email: emails)
         {

@@ -1,11 +1,11 @@
-// package edu.curtin.addressbook;
+package edu.curtin.addressbook;
 
 import java.io.*;
 import java.util.*;
 
 /**
  * A simple address book application.
- * @author Dave and ...
+ * @author Dave and Jack Davis
  */
 
 public class AddressBookApp 
@@ -16,7 +16,6 @@ public class AddressBookApp
     public static void main(String[] args)
     {
         String fileName;
-        String entryName;
         
         System.out.print("Enter address book filename: ");
         fileName = input.nextLine();
@@ -48,17 +47,18 @@ public class AddressBookApp
             String line = reader.readLine();
             while(line != null)
             {
-                String[] parts = line.split(":");
+                //Splits the parts into name and email1:email2:...:emailN
+                String[] parts = line.split(":",2);
+                
                 
                 if( 1 < parts.length)
                 {
-                    String[] inEmails = Arrays.copyOfRange(parts, 1, parts.length);
+                    List<String> inEmails = 
+                        new LinkedList<>(Arrays.asList(parts[1].split(":")));
+
+                                          //name    ,emails
                     addressBook.addNewEntry(parts[0],inEmails);
                 }
-                else
-                {
-                    //TODO: Throw exception here
-                }                
                 
                 line = reader.readLine();
             }
@@ -78,30 +78,19 @@ public class AddressBookApp
         boolean done = false;
         while(!done)
         {
-            int option;
             System.out.println("(1) Search by name, (2) Search by email, (3) Quit");
-            
             try
             {
                 switch(Integer.parseInt(input.nextLine()))
                 {
                     case 1:
-
-                        SearchByName(addressBook);
-
+                        searchByName(addressBook);
                         break;
+
                     case 2:
-                    {
-                        System.out.print("Enter email address: ");
-                        String email = input.nextLine();
-                        
-                        Entry e = addressBook.getEntryFromEmail(email);
-                        
-                        System.out.println(e.toString());
-                        
-                        // FIXME: Insert your code here to find an entry by email and display it.
+                        searchByEmail(addressBook);
                         break;
-                    }
+
                     case 3:
                         done = true;
                         break;
@@ -119,7 +108,7 @@ public class AddressBookApp
         }
     }
 
-    public static void SearchByName(AddressBook adbook)
+    public static void searchByName(AddressBook adbook)
     {
         System.out.print("Enter name: ");
         String name = null;
@@ -133,6 +122,23 @@ public class AddressBookApp
         catch (NoSuchElementException e) 
         {
             System.out.println( "Name '" + name + "' not found!");
+        }
+    }
+
+    public static void searchByEmail(AddressBook adbook)
+    {
+        System.out.print("Enter name: ");
+        String email = null;
+        
+        try
+        {
+            email = input.nextLine();
+            Entry e = adbook.getEntryFromName(email);
+            System.out.println(e.toString());
+        }
+        catch (NoSuchElementException e) 
+        {
+            System.out.println("Email '" + email + "' not found!");
         }
     }
 }
