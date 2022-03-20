@@ -1,4 +1,4 @@
-package edu.curtin.addressbook;
+// package edu.curtin.addressbook;
 
 import java.io.*;
 import java.util.*;
@@ -13,7 +13,7 @@ public class AddressBookApp
     /** Used to obtain user input. */
     private static Scanner input = new Scanner(System.in);
 
-    private static Map<Integer, IOption> options;
+    private static Map<Integer, Option> options;
     
     public static void main(String[] args)
     {
@@ -38,8 +38,8 @@ public class AddressBookApp
     {
         options = new HashMap<>();
 
-        options.put(1,new SearchByName());
-        options.put(2,new SearchByEmail());
+        options.put(1, new SearchByName());
+        options.put(2, new SearchByEmail());
 
     }
     

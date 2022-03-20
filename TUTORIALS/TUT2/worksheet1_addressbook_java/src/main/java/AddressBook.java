@@ -1,4 +1,4 @@
-package edu.curtin.addressbook;
+// package edu.curtin.addressbook;
 
 import java.util.*;
 
@@ -30,6 +30,29 @@ public class AddressBook
             e.addEmails(inEmails);
             addresses.put(inName,e);
         }
+    }
+
+    public Entry getEntryFromKey(String inKey)
+    {
+        if(addresses.containsKey(inKey))
+        {
+            return addresses.get(inKey);
+        }
+        
+        throw new NoSuchElementException("");
+    }
+
+    public Entry getEntryFromValue(String inValue)
+    {
+        for(Entry e: addresses.values())
+        {
+            if(e.getEmails().contains(inValue))
+            {
+                return e;
+            }   
+        }
+
+        throw new NoSuchElementException("");
     }
 
     public Entry getEntryFromName(String inName) throws NoSuchElementException

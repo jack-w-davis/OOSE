@@ -4,4 +4,13 @@ Refactor Code:
         ☐ searchByName
         ☐ searchByEmail
         ☐ make searchBy's own classes
+
+        ☐ justify class over interface
+
+    Refactor to MVP:
+        --- Model ---
+        ☐ AddressBook / Entry
+
+        --- View ---
+        
     
