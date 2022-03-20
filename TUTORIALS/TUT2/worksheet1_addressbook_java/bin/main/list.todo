@@ -1,0 +1,7 @@
+Refactor Code:
+    
+    Create interface iOption:
+        ☐ searchByName
+        ☐ searchByEmail
+        ☐ make searchBy's own classes
+    
