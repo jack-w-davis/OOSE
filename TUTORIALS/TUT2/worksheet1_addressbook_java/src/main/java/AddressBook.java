@@ -5,10 +5,11 @@ import java.util.*;
 /**
  * Contains all the address book entries.
  * 
- * @author ...
+ * @author Jack Davis
  */
 public class AddressBook
 {
+    //A map containing all the individual entries
     private Map<String, Entry> addresses;
 
     public AddressBook()
@@ -47,29 +48,6 @@ public class AddressBook
         for(Entry e: addresses.values())
         {
             if(e.getEmails().contains(inValue))
-            {
-                return e;
-            }   
-        }
-
-        throw new NoSuchElementException("");
-    }
-
-    public Entry getEntryFromName(String inName) throws NoSuchElementException
-    {
-        if(addresses.containsKey(inName))
-        {
-            return addresses.get(inName);
-        }
-        
-        throw new NoSuchElementException("");
-    }
-
-    public Entry getEntryFromEmail(String email) throws NoSuchElementException
-    {
-        for(Entry e: addresses.values())
-        {
-            if(e.getEmails().contains(email))
             {
                 return e;
             }   

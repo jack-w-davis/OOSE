@@ -17,6 +17,7 @@ public class AddressBookApp
     
     public static void main(String[] args)
     {
+        //Initialises the menu options
         initalizeOptions();
         
         String fileName;
@@ -34,15 +35,18 @@ public class AddressBookApp
         }
     }
 
+    /**
+     * Initalizes the menu options by adding a key, an int, and an option to 
+     * 'options'.
+     */
+
     public static void initalizeOptions()
     {
         options = new HashMap<>();
-
         options.put(1, new SearchByName());
         options.put(2, new SearchByEmail());
-
     }
-    
+
     /**
      * Read the address book file, containing all the names and email addresses.
      *
@@ -61,7 +65,6 @@ public class AddressBookApp
             {
                 //Splits the parts into name and email1:email2:...:emailN
                 String[] parts = line.split(":",2);
-                
                 
                 if( 1 < parts.length)
                 {
@@ -85,72 +88,53 @@ public class AddressBookApp
      *
      * @param addressBook The AddressBook object to search.
      */
+
     private static void showMenu(AddressBook addressBook)
     {
         boolean done = false;
         while(!done)
         {
-            System.out.println("(1) Search by name, (2) Search by email, (3) Quit");
+            printMenuOptions();
+            System.out.println("Enter a number");
+
             try
             {
-                switch(Integer.parseInt(input.nextLine()))
+                int chosenOption = Integer.parseInt(input.nextLine());
+
+                //if the user quits
+                if(chosenOption == 0)
                 {
-                    case 1:
-                        searchByName(addressBook);
-                        break;
-
-                    case 2:
-                        searchByEmail(addressBook);
-                        break;
-
-                    case 3:
-                        done = true;
-                        break;
-                        
-                    default:
-                        System.out.println("Enter a valid number");
-                        break;
+                    done = true;
                 }
+                else
+                {
+                    Entry foundEntry = 
+                        options.get(chosenOption).doOption(addressBook);
+                    System.out.println("ENTRY:");
+                    System.out.println("    " + foundEntry.toString());
+                }
+
             }
             catch(NumberFormatException e)
             {
-                // The user entered something non-numerical.
-                System.out.println("Enter a number");
+                System.out.println("Error: Please enter a digit");
+            }
+            catch (NoSuchElementException e)
+            {
+                System.out.println(e.getMessage());
             }
         }
     }
 
-    public static void searchByName(AddressBook adbook)
+    public static void printMenuOptions()
     {
-        System.out.print("Enter name: ");
-        String name = null;
-        
-        try
-        {
-            name = input.nextLine();
-            Entry e = adbook.getEntryFromName(name);
-            System.out.println(e.toString());
-        }
-        catch (NoSuchElementException e) 
-        {
-            System.out.println( "Name '" + name + "' not found!");
-        }
-    }
+        //0 is hardcoded to quit
+        System.out.println("0: Quit");
 
-    public static void searchByEmail(AddressBook adbook)
-    {
-        System.out.print("Enter name: ");
-        String email = null;
-        
-        try
+        for(Integer op: options.keySet())
         {
-            email = input.nextLine();
-            Entry e = adbook.getEntryFromName(email);
-            System.out.println(e.toString());
-        }
-        catch (NoSuchElementException e) 
-        {
-            System.out.println("Email '" + email + "' not found!");
+            System.out.printf("%d: %s\n",
+                op,options.get(op).getOptionDesc());
         }
     }
 }

@@ -1,0 +1,102 @@
+
+
+
+OVERALL:
+    Game/Implementation:
+        
+        Maze Renderer:
+            ☐ Map of ANSI values to object (wall, door, key etc)
+            @good-idea -- Use binary to denote wall intersection, then just use
+                          that as the key.
+
+            @good-idea -- use printf to make static where to print the walls.
+                          I.E. can simply just print over the tiles already printed
+
+        Error checking:
+            ☐ Maze row/column length >= 1
+
+        
+        @idea objects can be mention multiple times, therefore have each 'tile'
+              be a map. E.G. Tile (2,3) might have 3-4 keys on it
+        Objects:
+            Maze:
+
+            Walls:
+                ☐ Horizontal Wall
+                ☐ Vertical wall
+                ☐ perimeter wall around entire game
+
+            Doors:
+                -- Doors Does not occupy grid square, exists between them.
+                ☐ each door has one of six colours (1-6)
+                ☐ each door can be opened by the corresponding key object
+
+            Keys:
+                @idea -- Use a singleton to store colours and other object settings
+                ☐ 1-6 colours.
+                ☐ Can be at multiple locations
+                
+
+            Messages:
+
+            Player:
+
+    Input File:
+        CODES:
+            Start/End/Items:
+                Start
+                ☐ S Row Col       -- Indiactes the player starts at location (Row, Col) 
+                End
+                ☐ E Row Col       -- Indicates an end point in the maze (can be more than one)
+                Key
+                ☐ K Row Col c     -- Indicates a (c)olour key at (Row, Col)
+                Message
+                ☐ M Row Col "..." -- Indicates a message at (Row, Col), anything following the
+                                      Row Col is read as a message
+            
+            WALLS:
+                ☐ WH Row Col      -- Indicates a horizontal wall north(above) square (Row, Col) 
+                                   -- Therefore the square is also south of (X -1 , Y)
+                                   -- E.G. WH 2 3 is north of (2,3) and south of (1,3)
+                ☐ WV Row Col      -- Inidicates a vertical wall west (left) of (Row, Col)
+
+            DOORS:
+                ☐ DH Row Col c    -- indicates a (c)olour door north of (Row, Col)
+                ☐ DV Row Col c    -- indicates a (c)olour door west of (Row, Col)
+            
+            
+
+
+
+
+Marking:
+    Must Use/Provide:
+        ☐ Strategy or Template pattern
+        ☐ Decorator Pattern
+        ☐ UML Diagram that accurately represents design
+            -- Make the diagram layout neat, no crossing lines
+        ☐ A response to each of criteria 2-6 as part of submission.
+            -- write a paragraph or 2 justifying choices in a txt file called
+               'criteria.txt'.
+        
+
+
+    MARKING CRITERIA:
+        ☐ Must be well commented
+        ☐ Must use PMD (oose-omd-rules.xml)
+        ☐ Appropiate use of containers
+            -- Must find reasonable use of containers in code
+        ☐ Clear and distinct class/interface/method responsibilites
+            -- Classes,Interfaces,Methods must all have a clear logical purpose
+            -- ... must all be appropiately named, in light of what they contain
+        ☐ Appropiate error handling
+            -- The program must use exception handling appropiately, must gracefully
+            handle external errors, without compromising debugging
+            -- The program must include a reasonable set of logging statements
+        ☐ Appropiate use of the strategy/template pattern
+            -- Must SOLVE a problem. I.E. must decouple something
+            -- Be warned about:
+                * Querying which subclass you're dealing with.
+                * Creating subclas objects in the same place you're calling them
+        ☐ Appropiate use of the decorated pattern
+        ☐ Clear and correct UML

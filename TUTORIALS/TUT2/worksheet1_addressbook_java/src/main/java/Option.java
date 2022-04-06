@@ -11,66 +11,67 @@ import java.util.*;
 public abstract class Option
 {
     public static Scanner input = new Scanner(System.in);
-    private static boolean requires_text;
+    protected String query;
 
-    abstract public Entry doOption(AddressBook adBook, String query);
-    abstract public String getOptionDesc();
+    abstract public Entry doOption(AddressBook adBook);
+
+    protected String getOptionDesc()
+    {
+        return "Search by " + query;  
+    }
+    
+    protected String getQuery()
+    {
+        System.out.printf("Please enter the %s to search\n",query);
+
+        String query = input.nextLine();
+
+        return query;
+    }
 }
 
 class SearchByName extends Option
 {
-    @Override
-    public Entry doOption(AddressBook adBook, String query)
+    public SearchByName()
     {
-        System.out.print("Enter name: ");
-        String name = null;
-        Entry entry = null;
-        
-        try
-        {
-            name = input.nextLine();
-            entry = adBook.getEntryFromName(name);
-        }
-        catch (NoSuchElementException e) 
-        {
-            System.out.println( "Entry for '" + name + "' not found!");
-        }
-
-        return entry;
+        query = "Name";
     }
 
     @Override
-    public String getOptionDesc()
+    public Entry doOption(AddressBook adBook) throws NoSuchElementException
     {
-        return "Name";
+        try
+        {
+            Entry entry = null; 
+            entry = adBook.getEntryFromKey(getQuery());
+            return entry;
+        }
+        catch (NoSuchElementException e) 
+        {
+            throw new NoSuchElementException("Name not found!");
+        }
     }
 }
 
 class SearchByEmail extends Option
 {
-    @Override
-    public Entry doOption(AddressBook adBook, String query)
+    public SearchByEmail()
     {
-        System.out.print("Enter email: ");
-        String email = null;
-        Entry entry = null;
-        
-        try
-        {
-             = input.nextLine();
-            entry = adBook.getEntryFromName(email);
-        }
-        catch (NoSuchElementException e) 
-        {
-            System.out.println( "Entry for '" + name + "' not found!");
-        }
-
-        return entry;
+        query = "Email";
     }
 
     @Override
-    public String getOptionDesc()
+    public Entry doOption(AddressBook adBook) throws NoSuchElementException
     {
-        return "Email";
+        try
+        {
+            Entry entry = null; 
+            entry = adBook.getEntryFromValue(getQuery());
+            return entry;
+        }
+        catch (NoSuchElementException e) 
+        {
+            throw new NoSuchElementException("Email not found!");
+        }
     }
 }

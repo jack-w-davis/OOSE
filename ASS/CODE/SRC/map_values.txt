@@ -1,0 +1,16 @@
+door: ▒
+key: ╕
+player: P
+start: S
+end: E
+
+--- WALLS ---
+wall_1:
+
+
+
+// OLD WALLS - - wall_tl: ┌
+// OLD WALLS - - wall_tr: ┐
+// OLD WALLS - - wall_bl: └
+// OLD WALLS - - wall_br: └
+// OLD WALLS - - wall_1: │
