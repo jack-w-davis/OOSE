@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  * Parses mathematical expressions, and builds a tree of ExprNode objects to represent the parsed 
@@ -15,6 +17,8 @@ public class ExprParser
     // whitespace, then checks for a fractional number (containing and possibly starting with "."),
     // then checks for an integer, and finally falls back to a single other character of any type.
     private static final Pattern TOKEN = Pattern.compile("\\s*([0-9]*\\.[0-9]+|[0-9]+|.)");
+
+    private static final Logger logger = Logger.getLogger(ExprParser.class.getName());
     
     public ExprParser() {}
 
@@ -24,6 +28,8 @@ public class ExprParser
      */
     public ExprNode parse(String s)
     {
+        logger.info(() -> "Parse");
+
         List<String> tokens = new LinkedList<>();
 
         // Tokenise the string, by repeatedly applying the 'TOKEN' regular expression until it 
@@ -55,12 +61,16 @@ public class ExprParser
      */
     private ExprNode parseAdd(List<String> tokens)
     {
+        logger.info(() -> "Parse Add: ");
+        logger.info(() -> "    - Tokens: " + tokens.toString());
+
         ExprNode node = parseMul(tokens);
         boolean end = false;
         while(!end && !tokens.isEmpty())
         {
             // Expect next token to be '+' or '-'
             String token = tokens.remove(0);
+
             switch(token)
             {
                 case "+": 
@@ -87,12 +97,15 @@ public class ExprParser
      */
     private ExprNode parseMul(List<String> tokens)
     {
+        logger.info(() -> "Parse Multiplication");
         ExprNode node = parsePrimary(tokens);
         boolean end = false;
         while(!end && !tokens.isEmpty())
         {
             // Expect next token to be "*" or "/"
             String token = tokens.remove(0);
+
+            logger.info(() -> "    - Token: " + token);
             switch(token)
             {
                 case "*":
@@ -120,8 +133,11 @@ public class ExprParser
      */
     private ExprNode parsePrimary(List<String> tokens)
     {
+        logger.info(() -> "Parse Primary");
         ExprNode node;
         String token = tokens.remove(0); // Obtain the next token
+
+        logger.info(() -> "    - Token: " + token);
         switch(token)
         {
             case "(":

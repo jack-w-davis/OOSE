@@ -1,0 +1,34 @@
+Things i will need:
+
+
+----------------- CLASSES ------------------------
+
+    - File loader class:
+        * must read in the File
+        * the contents of the file may vary
+
+        METHODS:
+            *
+
+
+    - GameObject SuperClass (abstract)
+        FIELDS:
+            - valid regex string
+
+        METHODS:
+
+
+    - Wall class:
+        * have 1 wall class with type of wall (vertical or horizontal)
+
+        METHODS:
+            * print perimiter wall
+            * get wall char (based on walls around it)
+
+
+
+
+
+
+    - Resources File:
+

@@ -2,9 +2,7 @@ door: ▒
 key: ╕
 player: P
 start: S
-end: E
-
---- WALLS ---
+end: E OR ★
 wall_1:
 
 

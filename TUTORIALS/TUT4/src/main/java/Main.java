@@ -1,6 +1,8 @@
 package edu.curtin.matheval;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  * Entry point for out mathematical expression app.

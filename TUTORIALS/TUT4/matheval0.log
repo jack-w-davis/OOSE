@@ -1,0 +1,26 @@
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parse
+INFO: Parse
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parseAdd
+INFO: Parse Add: 
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parseAdd
+INFO:     - Tokens: [3, *, 3, +, 5]
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parseMul
+INFO: Parse Multiplication
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parsePrimary
+INFO: Parse Primary
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parsePrimary
+INFO:     - Token: 3
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parseMul
+INFO:     - Token: *
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parsePrimary
+INFO: Parse Primary
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parsePrimary
+INFO:     - Token: 3
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parseMul
+INFO:     - Token: +
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parseMul
+INFO: Parse Multiplication
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parsePrimary
+INFO: Parse Primary
+Apr 06, 2022 7:51:34 PM edu.curtin.matheval.ExprParser parsePrimary
+INFO:     - Token: 5
