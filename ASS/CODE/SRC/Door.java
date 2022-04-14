@@ -1,12 +1,14 @@
-public class Door extends GameOBJ implements Pickupable
+public class Door extends GameOBJ implements Collidable
 {
-    public Door(int rm)
+    public static final String FILE_PATTERN = "(D[HV])(\\s+\\d){3}";
+
+    public Door()
     {
-        super(rm);
+
     }
 
-    public String getTest()
+    public static String getFilePattern()
     {
-        return "Door";
+        return FILE_PATTERN;
     }
 }

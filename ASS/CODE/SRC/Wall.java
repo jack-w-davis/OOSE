@@ -1,12 +1,14 @@
-public class Wall extends GameOBJ implements Pickupable
+public class Wall extends GameOBJ implements Collidable
 {
-    public Wall(int rm)
+    public static final String FILE_PATTERN = "(W[VH])(\\s+\\d){2}";
+
+    public Wall()
     {
-        super(rm);
+
     }
 
-    public String getTest()
+    public static String getFilePattern()
     {
-        return "Wall";
+        return FILE_PATTERN;
     }
 }

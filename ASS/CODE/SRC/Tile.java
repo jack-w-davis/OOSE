@@ -1,13 +1,17 @@
 public interface Tile 
-{
-    // public int[] getRowColLocation();
+{}
 
-    // public void setParams(String... inParams);
-    public String getTest();
+interface Interactable extends Tile
+{
+    public void interact();
 }
 
+interface Collidable extends Tile
+{
+    // public void 
+}
 
-interface Pickupable extends Tile
+interface Drawable extends Tile
 {
 
 }

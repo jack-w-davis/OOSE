@@ -1,19 +1,17 @@
-public class GameOBJ implements Tile
+public abstract class GameOBJ implements Tile    
 {
-    private int rm;
 
-    public GameOBJ(int inRm)
+    public GameOBJ(String... inParams)
     {
-        rm = inRm;
+
     }
 
-    public String getTest()
+    public static String getFilePattern()
     {
-        return "GameObj";
+        //TODO: Make throw exception of some sorts
+        return null;
     }
+    
 
-    public int getRm()
-    {
-        return rm;
-    }
+    // public void 
 }
