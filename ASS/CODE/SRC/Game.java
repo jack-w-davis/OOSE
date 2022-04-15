@@ -5,7 +5,11 @@ public class Game
 {
     public static void main(String[] args)
     {
-        
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
+        List<String> fileContent = IOUtils.readFile("../RESOURCES/example_map.txt");
+
+        Maze m = MazeParser.parseFile(fileContent);
     }
 
     //TODO: Ask dave if this is ok
@@ -28,4 +32,6 @@ public class Game
     //         System.out.println(ele.getTest());
     //     }
     // }
+
+
 }

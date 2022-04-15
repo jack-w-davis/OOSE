@@ -1,8 +1,8 @@
 public class Wall extends GameOBJ implements Collidable
 {
-    public static final String FILE_PATTERN = "(W[VH])(\\s+\\d){2}";
+    private static final String FILE_PATTERN = "(W[VH])(\\s+\\d){2}";
 
-    public Wall()
+    public Wall(String... inParams)
     {
 
     }
