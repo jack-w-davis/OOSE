@@ -1,5 +1,9 @@
 Final-Plan:
 
+    Order:
+        ☐ MapReader
+
+
     * GameObject SuperClass
         ---EXTENDED BY---
         * Wall -- can be vertical/horizontal
@@ -9,16 +13,28 @@ Final-Plan:
         * End
         * Message
 
+    --- INTERFACES ---
+        - tile, reads an x/y
+        - interactable, allows an object to be interacted with
+
+    *mapReader
+        - purpose: to read in files and do basic validation
+
+
 
 Game/Implementation:
     File Loader:
-        @bad-idea Can use the factory pattern
+        @idea Can use the factory pattern
         @idea Can give all the different game-objs (wall,door,key etc)
               a static regex pattern for file loading
         @idea use decorator pattern for reading in the file and the resource file
         @idea use a map to count specific things (like start/end) which
               can only have 1 per map
-    
+        @good-idea have 3 constructors, empty regular and strings, that way when
+                   using a factory to create the objects you can just call the string
+                   ones
+
+        @idea Singleton for the character map
     Maze Renderer:
         ☐ Map of ANSI values to object (wall, door, key etc)
         @good-idea -- Use binary to denote wall intersection, then just use
@@ -30,7 +46,7 @@ Game/Implementation:
     @idea objects can be mention multiple times, therefore have each 'tile'
           be a map. E.G. Tile (2,3) might have 3-4 keys on it
     Objects:
-        @idea Objects should extend some interface (or abstract class)
+        @good-idea Objects should extend some interface (or abstract class)
               so that they can be stored in a grid of type <interface/superclass>.
         @idea call the interface i_grid or something
         @idea have a game obj file and then have extensions of it
@@ -38,7 +54,7 @@ Game/Implementation:
         Maze:
             --First line must contain maze size.
         Walls:
-            @idea have 1 object only and use template method to implement
+            @idea have 1 object only and use strategy pattern to implement
                   whether it is a vertical or a horizontal wall
             ☐ Horizontal Wall
             ☐ Vertical wall
@@ -49,11 +65,15 @@ Game/Implementation:
             ☐ each door can be opened by the corresponding key object+
         Keys:
             @idea -- Use a singleton to store colours and other object settings
+            @idea -- Use the decorator pattern here to 'collect' keys, here this 
+                     will allow the door to be opened
             ☐ 1-6 colours.
             ☐ Can be at multiple locations
             
         Messages:
         Player:
+            @idea -- Atempting to move should check for collision with the 
+                     collide tag
 
 
 

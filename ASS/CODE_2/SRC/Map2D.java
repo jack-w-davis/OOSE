@@ -46,6 +46,4 @@ public class Map2D<K,V>
     {
         return m.containsKey(key1);
     }
-
-
 }

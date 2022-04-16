@@ -8,7 +8,7 @@ Things i will need:
         * the contents of the file may vary
 
         METHODS:
-            *
+            * 
 
 
     - GameObject SuperClass (abstract)

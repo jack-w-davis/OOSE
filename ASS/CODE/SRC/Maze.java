@@ -14,7 +14,7 @@ public class Maze
     private int startCol = 0;
     
     //TODO: Explain how i work lol
-    
+
     private Map2D<Integer,Property> gameMap = new Map2D<>();
         
 
@@ -24,7 +24,7 @@ public class Maze
         setCols(inCols);
     }
 
-    public void putObj(int row, int col, Property obj)
+    public void put(int row, int col, Property obj)
     {   
         gameMap.put(row, col, obj);
     }

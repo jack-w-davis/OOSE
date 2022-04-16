@@ -1,5 +1,7 @@
 public interface Property 
-{}
+{
+    
+}
 
 interface Interactable extends Property
 {
