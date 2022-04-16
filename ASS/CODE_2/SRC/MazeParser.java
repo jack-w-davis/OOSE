@@ -1,7 +1,6 @@
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
-
+import java.util.*;
 
 
 /**
@@ -10,7 +9,13 @@ import java.util.Map;
 
 public class MazeParser
 {
-    private Map<String, String> a;
+    //TODO: Add here
+    //DEP-INJ: ObjParser
+    public MazeParser()
+    {
+
+    }
+
     public static void parseFileContent(List<String> file)
     {
 
