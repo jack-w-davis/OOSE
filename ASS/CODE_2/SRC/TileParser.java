@@ -1,43 +1,76 @@
 import java.util.*;
 
+//TODO: If time permits add interface here so that TileParser (via generics)
+//      can be injected into maze parser where needed
 public abstract class TileParser 
 {
     //TODO: Strategey/Template pattern is here
-    private static final Map<String,TileParser> PARSERS = Map
-        .ofEntries( 
-            Map.entry("D", new DoorParser()),
-            Map.entry("W", new WallParser()),
-            Map.entry("K", new KeyParser())
-        );
+    //Default Constructor
+    public TileParser()
+    {}
 
-        
     //TODO: Throw exception here for non matching str
-    public static TileParser getParser(String objCode)
+
+    // abstract public String parseLine(String line);
+
+    public GameObj parseLine(String line)
     {
-        objCode = objCode.trim().toUpperCase();
-        TileParser objParser = null;        
-
-        if(PARSERS.containsKey(objCode)){
-            objParser = PARSERS.get(objCode);    
-        }else{
-            //TODO: Throw exception here for non matching str
-        }
-
-        return objParser;
+        parseArgs(line.trim().split("\\s+"));
+        
+        return null;
     }
+
+    abstract public void parseArgs(String[] inArgs);
+    abstract public boolean validateLine(String line);
+
 }
 
 class DoorParser extends TileParser
 {
+    // public String parseLine(String line);
+
+    public DoorParser()
+    {}
+
+    public void parseArgs(String[] inArgs)
+    {
+
+    }
+
+    public boolean validateLine(String line)
+    {
+        return  line.matches("(D[HV])(\\s+\\d){3}");
+
+    }
 
 }
 
 class WallParser extends TileParser
 {
+    public void parseArgs(String[] inArgs)
+    {
+
+    }
+
+    public boolean validateLine(String line)
+    {
+        return line.matches("(W[VH])(\\s+\\d){2}");
+    }
 
 }
 
 class KeyParser extends TileParser
 {
+
+    public void parseArgs(String[] inArgs)
+    {
+
+    }
+
+    public boolean validateLine(String line)
+    {
+        return line.matches("(K)(\\s+\\d){3}");
+        
+    }
 
 }
