@@ -13,14 +13,10 @@ public class IOUtils
         try
         {
             File file = new File(filePath);
-
             System.out.println(file.exists());//TODO: Replace me with a logging statement
-            
             BufferedReader br = new BufferedReader(new FileReader(file));
             list = br.lines().collect(Collectors.toList());
-
             br.close();
-
         }
         catch(IOException e)
         {
@@ -28,8 +24,6 @@ public class IOUtils
         }
 
         return list;
-    }
-
-    
+    }   
 }
 

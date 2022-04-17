@@ -2,52 +2,44 @@ import java.util.List;
 import java.util.Map;
 import java.util.*;
 
-
-/**
- * @
- */
-
 public class MazeParser<T extends TileParser>
 {
-    private Map<String,T> parsers = new HashMap<>();
+    private static final int MIN_ROWS = 1;
+    private static final int MIN_COLS = 1;
+    private Set<T> parsers = new HashSet<>();
 
-    //TODO: Add here
-    //DEP-INJ: ObjParser
-    public MazeParser(){}
+    //TODO: If time permts make this take a list of parsers so that the parsers
+    //      can only be set on creation
+    public MazeParser()
+    {}
 
     public void parseFileContent(List<String> fileContent)
     {
+        Maze m = new Maze();
         for(String s: fileContent)
         {
-            preParseLine(s);   
+            parseLine(s,m);
         }
     }
 
-    public void preParseLine(String line)
+    public void parseLine(String line, Maze m)
     {
-        line = line.trim();
-
-        TileParser p = getParser(line.substring(0,1));
-        
-        p.parseLine(line);
+        for(T parser: parsers)
+        {
+            if(parser.validateLine(line))
+            {
+                //Dear Dave or whoever is marking, i know in OOPD/PDI breaks
+                //are considered evil, but please don't remove marks here!
+                // <3 Thanks
+                parser.parseArgs(line.split("\\s+"), m);
+                break; 
+            }
+        }
     }
 
-    public void addParser(String code, T inParser)
+    public void addParser(T inParser)
     {
-        code = code.trim().toUpperCase();
-        parsers.put(code,inParser);
+        parsers.add(inParser);
     } 
 
-    public TileParser getParser(String objCode)
-    {
-        objCode = objCode.trim().toUpperCase();
-        TileParser objParser = null;        
-
-        if(parsers.containsKey(objCode))
-        {
-            objParser = parsers.get(objCode);    
-        }
-
-        return objParser;
-    }
 }
