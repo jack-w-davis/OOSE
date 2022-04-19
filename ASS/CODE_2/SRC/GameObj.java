@@ -7,58 +7,103 @@ import java.util.Collection.*;
 abstract public class GameObj
 {
     private int row;
-    private int col;
+    private int col;    
     
     public GameObj()
     {}
 
-    public void setRow(int inRow)
-    {
+    public void setRow(int inRow) {
         row = inRow;
     }
 
-    public void setCol(int inCol)
-    {
+    public void setCol(int inCol) {
         col = inCol;
     }
 
-    public int getRow()
-    { 
-        return row; 
+    public int getRow() {
+        return row;
     }
 
-    public int getCol()
-    {
+    public int getCol() {
         return col;
     }
 }
 
-class Wall extends GameObj
+abstract class OrientGameObj extends GameObj
 {
-    private static final Logger logger = 
-        Logger.getLogger(Wall.class.getName());
+    private Orientation ori;
+
+    public void setOri(Orientation inOri)
+    {
+        ori = inOri;
+    }
+}
+
+interface Colour
+{
+    abstract public void setColour(int inColour);
+    abstract public int getColour();
+}
+
+interface Drawable
+{
+    
+}
+
+
+class Message extends GameObj
+{
+    private String text;
+    
+    public Message()
+    {
+    }
+
+    public void setText(String inText)
+    {
+        text = inText;
+    }
+}
+
+class Wall extends OrientGameObj
+{
     public Wall()
     {
-        logger.info(this.getClass().getName());
     }
 }
 
-class Door extends GameObj
+class Door extends OrientGameObj implements Colour
 {
-    private static final Logger logger = 
-        Logger.getLogger(Door.class.getName());
+    private int colour;
+
     public Door()
+    {}
+
+    public void setColour(int inColour)
     {
-        logger.info(this.getClass().getName());
+        colour = inColour;
+    }
+
+    public int getColour()
+    {
+        return colour;
     }
 }
 
-class Key extends GameObj
+class Key extends GameObj implements Colour
 {
-    private static final Logger logger = 
-        Logger.getLogger(Key.class.getName());
-    public Key()
+    private int colour;
+
+    public Key() 
+    {}
+
+    public void setColour(int inColour)
     {
-        logger.info(this.getClass().getName());
+        colour = inColour;
+    }
+    
+    public int getColour()
+    {
+        return colour;
     }
 }

@@ -7,11 +7,13 @@ class KeyParser extends TileParser
         return line.matches(PATTERN);
     }
 
-    public void parseArgs(String[] inArgs, Maze maze)
+    public void parseArgs(String line, Maze maze)
     {
-        GameObj obj = new Key();
-        obj.setRow(Integer.parseInt(inArgs[1]));
-        obj.setCol(Integer.parseInt(inArgs[2]));
+        String[] args = line.split("\\s+");
+        Key obj = new Key();
+        obj.setRow(Integer.parseInt(   args[1]));
+        obj.setCol(Integer.parseInt(   args[2]));
+        obj.setColour(Integer.parseInt(args[3]));
         maze.put(obj);
     }
 }

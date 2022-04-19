@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Map2D<K,V> 
 {
@@ -10,7 +11,7 @@ public class Map2D<K,V>
     {
         //If key one isn't in the map already,
         //It creates a new map for that key then adds it
-        if(! containsOutterKey(key1))
+        if(! m.containsKey(key1))
         {
             m.put(key1,new HashMap<K,ArrayList<V>>());
         }
@@ -35,15 +36,41 @@ public class Map2D<K,V>
     {
         boolean contains = false;
         //Contains = true if both keys exist
-        if(containsOutterKey(key1))
+        if(m.containsKey(key1))
             if(m.get(key1).containsKey(key2))
                 contains = true;
 
         return contains;
     }
 
-    public boolean containsOutterKey(K key1)
+    public <T extends V> Map2D<K,T> filterByType(Class<T> type)
     {
-        return m.containsKey(key1);
+        //The object being returned
+        Map2D<K,T> cl = new Map2D<>();
+
+        //Iterates over the rows
+        for(Map.Entry<K,Map<K,ArrayList<V>>> colEntry: m.entrySet())
+        {
+            //The value of the entry
+            Map<K,ArrayList<V>> colVal = colEntry.getValue();
+            K colKey = colEntry.getKey();
+            //Inner Entry
+            for(Map.Entry<K,ArrayList<V>> rowEntry: colVal.entrySet())
+            {
+                ArrayList<V> rowVal = rowEntry.getValue();
+                K rowKey = rowEntry.getKey();
+
+                for(V value: rowEntry.getValue())
+                {
+                    if(type.isInstance(value))
+                    {
+                        cl.put(colKey, rowKey, type.cast(value));
+                    }
+                }
+            }
+        }
+        System.out.println("cloned");
+
+        return cl;
     }
 }

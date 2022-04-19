@@ -7,11 +7,26 @@ public class DoorParser extends TileParser
         return line.matches(PATTERN);
     }
 
-    public void parseArgs(String[] inArgs, Maze maze)
+    public void parseArgs(String line, Maze maze)
     {
-        GameObj obj = new Door();
-        obj.setRow(Integer.parseInt(inArgs[1]));
-        obj.setCol(Integer.parseInt(inArgs[2]));
+        String[] args = line.split("\\s+");
+        Door obj = new Door();
+        obj.setOri(parseOrientation(   args[0]));
+        obj.setRow(Integer.parseInt(   args[1]));
+        obj.setCol(Integer.parseInt(   args[2]));
+        obj.setColour(Integer.parseInt(args[3]));
         maze.put(obj);
+    }
+
+    private Orientation parseOrientation(String code)
+    {
+        Orientation ori = null;
+        if(code.matches(".H")){
+            ori = Orientation.HORIZONTAL;
+        }else if(code.matches(".V")){
+            ori = Orientation.VERTICAL;
+        }
+
+        return ori;
     }
 }

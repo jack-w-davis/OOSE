@@ -4,22 +4,31 @@ import java.util.*;
 
 public class MazeParser<T extends TileParser>
 {
-    private static final int MIN_ROWS = 1;
-    private static final int MIN_COLS = 1;
+    private int minRows;
+    private int minCols;
     private Set<T> parsers = new HashSet<>();
 
-    //TODO: If time permts make this take a list of parsers so that the parsers
+    //TODO: If time permits make this take a list of parsers so that the parsers
     //      can only be set on creation
     public MazeParser()
     {}
 
-    public void parseFileContent(List<String> fileContent)
+    public Maze loadMaze(List<String> mazeContent, List<String> charContent)
+    {
+        return parseFileContent(mazeContent);
+    }
+
+    public Maze parseFileContent(List<String> fileContent)
     {
         Maze m = new Maze();
         for(String s: fileContent)
-        {
+        {   
             parseLine(s,m);
         }
+
+        System.out.println("break");
+
+        return m;
     }
 
     public void parseLine(String line, Maze m)
@@ -31,7 +40,7 @@ public class MazeParser<T extends TileParser>
                 //Dear Dave or whoever is marking, i know in OOPD/PDI breaks
                 //are considered evil, but please don't remove marks here!
                 // <3 Thanks
-                parser.parseArgs(line.split("\\s+"), m);
+                parser.parseArgs(line, m);
                 break; 
             }
         }
