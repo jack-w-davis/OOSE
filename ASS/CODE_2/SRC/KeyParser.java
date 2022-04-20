@@ -1,4 +1,4 @@
-class KeyParser extends TileParser
+class KeyParser extends GameObjParser
 {
     public static final String PATTERN = "(K)(\\s+\\d){3}";
 

@@ -33,13 +33,16 @@ abstract class OrientGameObj extends GameObj
 {
     private Orientation ori;
 
-    public void setOri(Orientation inOri)
-    {
+    public void setOri(Orientation inOri){
         ori = inOri;
+    }
+
+    public Orientation getOri(){
+        return ori;
     }
 }
 
-interface Colour
+interface Colour extends Drawable
 {
     abstract public void setColour(int inColour);
     abstract public int getColour();
@@ -47,7 +50,7 @@ interface Colour
 
 interface Drawable
 {
-    
+    abstract public char getCharCode();
 }
 
 
@@ -65,19 +68,34 @@ class Message extends GameObj
     }
 }
 
-class Wall extends OrientGameObj
+class Wall extends OrientGameObj implements Drawable
 {
+    public static final char CHAR_CODE = 'K';
+
     public Wall()
     {
+    }
+
+    //TODO: Change me based off walls surrounding
+    public char getCharCode()
+    {
+        return CHAR_CODE;
     }
 }
 
 class Door extends OrientGameObj implements Colour
 {
+    public static final char CHAR_CODE = 'D';
+
     private int colour;
 
     public Door()
     {}
+
+    public char getCharCode()
+    {
+        return CHAR_CODE;
+    }
 
     public void setColour(int inColour)
     {
@@ -92,10 +110,16 @@ class Door extends OrientGameObj implements Colour
 
 class Key extends GameObj implements Colour
 {
+    public static final char CHAR_CODE = 'K';
     private int colour;
 
     public Key() 
     {}
+
+    public char getCharCode()
+    {
+        return CHAR_CODE;
+    }
 
     public void setColour(int inColour)
     {

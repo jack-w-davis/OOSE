@@ -1,4 +1,4 @@
-public class StartEndParser extends TileParser
+public class StartEndParser extends GameObjParser
 {
     public static final String PATTERN = "(S|E)(\\s+\\d){2}";
 
@@ -24,7 +24,7 @@ public class StartEndParser extends TileParser
         
     }
 }
-class MessageParser extends TileParser
+class MessageParser extends GameObjParser
 {
     public static final String PATTERN = "(M)(\\s+\\d){2}(\\s+).+";
 

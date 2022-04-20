@@ -14,13 +14,15 @@ public class GameCharManager
         map.put(key, value);
     }
 
-    // public CharResManager getInstance()
-    // {
-    //     if(null == instance){
-    //         instance = new CharResManager();
-    //     }
+    public String get(String key)
+    {
+        String ret = key;
 
-    //     return instance;
-    // }
+        if(map.containsKey(key))
+            ret = map.get(key).toString();
+
+        return ret;
+
+    }
 
 }

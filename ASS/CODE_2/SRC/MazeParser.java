@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.*;
 
-public class MazeParser<T extends TileParser>
+public class MazeParser<T extends GameObjParser>
 {
     private int minRows;
     private int minCols;
@@ -13,16 +13,12 @@ public class MazeParser<T extends TileParser>
     public MazeParser()
     {}
 
-    public Maze loadMaze(List<String> mazeContent, List<String> charContent)
-    {
-        return parseFileContent(mazeContent);
-    }
-
     public Maze parseFileContent(List<String> fileContent)
     {
         Maze m = new Maze();
-        for(String s: fileContent)
-        {   
+        
+        parseFirstLine(fileContent.remove(0), m);
+        for(String s: fileContent){   
             parseLine(s,m);
         }
 
@@ -31,7 +27,15 @@ public class MazeParser<T extends TileParser>
         return m;
     }
 
-    public void parseLine(String line, Maze m)
+    private void parseFirstLine(String line, Maze m)
+    {
+        String[] args = line.split("\\s+");
+
+        m.setRows(Integer.parseInt(args[0]));
+        m.setCols(Integer.parseInt(args[1]));
+    }
+
+    private void parseLine(String line, Maze m)
     {
         for(T parser: parsers)
         {

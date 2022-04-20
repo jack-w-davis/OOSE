@@ -26,15 +26,43 @@ public class Maze
         numRows = dim;
     }
 
+    public int getNumRows()
+    {
+        return numRows;
+    }
+
+    public int getNumCols()
+    {
+        return numCols;
+    }
+
     public void setCols(int dim)
     {
         numCols = dim;
     }
 
-    //TODO: Change me so that i return an array which is printed out or something
-    //      Actually maybe not
+    //TODO: RENAME ME TO FITLER TYPE OR SOMETHING
+    // @SuppressWarnings("unchecked")
     public <T extends GameObj> Map2D<Integer,T> getDrawable(Class<T> type)
     {
+        // Map2D<Integer,T> clone = new Map2D<>();
+        // Map2D<Integer,T> copy = objMap.filterByType(type);
+        
+        // for(int key1: copy.key1Set())
+        // {
+        //     for(int key2: copy.key2Set(key1))
+        //     {
+        //         List<T> list = new ArrayList<>();
+        //         for(T obj: copy.getValue(key1, key2))
+        //         {
+        //             try
+        //             {
+        //                 clone.put(key1, key2,(T) obj.clone());
+        //             }catch(CloneNotSupportedException e)
+        //             {}
+        //         }
+        //     }
+        // }
         return objMap.filterByType(type);
     }
 

@@ -6,13 +6,11 @@ import java.util.Collection.*;
 
 public class Game 
 {
-    private static final Logger logger = Logger.getLogger(Game.class.getName());
     public static void main(String[] args)
     {
-
         //------------------------MODEL----------------------------------
         //MAZE PARSING
-        MazeParser<TileParser> mParser = new MazeParser<>();
+        MazeParser<GameObjParser> mParser = new MazeParser<>();
 
         //ADDING LINEPARSERS
         mParser.addParser(new DoorParser());
@@ -23,12 +21,18 @@ public class Game
         List<String> fileContent = IOUtils.readFile("../RES/map.txt");     
         //PARSING FILE       
         Maze m = mParser.parseFileContent(fileContent);
-        Map2D doors = m.getDrawable(Door.class);
-        Map2D keys = m.getDrawable(Key.class);
-
 
         //------------------------VIEW-----------------------------------
-        // GameDisplayer displayer = new GameDisplayer("../RES/map_values.txt");
+        List<String> charContent = IOUtils.readFile("../RES/map_values.txt");     
+        GameCharManager charMap = new GameCharManager();
+        for(String s: charContent)
+        {
+            String[] parts = s.split("\\s+");
+            charMap.addChar(parts[0],parts[1].charAt(0));
+        }
 
+        GameDisplayer displayer = new GameDisplayer(1,3,charMap,m);
+
+        displayer.displayMaze();
     }
 }

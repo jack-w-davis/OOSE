@@ -1,7 +1,7 @@
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.*;
 
-public class Map2D<K,V> 
+public class Map2D<K,V> implements Iterable<V>
 {
     private Map<K,Map<K,ArrayList<V>>> m = new HashMap<>();
 
@@ -21,17 +21,13 @@ public class Map2D<K,V>
     private void putInnerKey(K key1, K key2, V value)
     {
         //If Key 2 doesn't exists
-        if(m.get(key1).containsKey(key2))
-        {
-            m.get(key1).get(key2).add(value);
-        }
-        //If key1 exists but not key 2
-        else
+        if(! m.get(key1).containsKey(key2))
         {
             m.get(key1).put(key2, new ArrayList<V>());
-            m.get(key1).get(key2).add(value);
         }
+        m.get(key1).get(key2).add(value);
     }
+    
     public boolean containsKeys(K key1, K key2)
     {
         boolean contains = false;
@@ -43,34 +39,68 @@ public class Map2D<K,V>
         return contains;
     }
 
-    public <T extends V> Map2D<K,T> filterByType(Class<T> type)
+    public List<V> getValue(K key1, K key2)
     {
-        //The object being returned
-        Map2D<K,T> cl = new Map2D<>();
-
-        //Iterates over the rows
-        for(Map.Entry<K,Map<K,ArrayList<V>>> colEntry: m.entrySet())
+        List<V> retVal = null;
+        if(containsKeys(key1, key2))
         {
-            //The value of the entry
-            Map<K,ArrayList<V>> colVal = colEntry.getValue();
-            K colKey = colEntry.getKey();
-            //Inner Entry
-            for(Map.Entry<K,ArrayList<V>> rowEntry: colVal.entrySet())
-            {
-                ArrayList<V> rowVal = rowEntry.getValue();
-                K rowKey = rowEntry.getKey();
+            retVal = m.get(key1).get(key2);
+        }
+        return retVal;
+    }
 
-                for(V value: rowEntry.getValue())
-                {
-                    if(type.isInstance(value))
-                    {
-                        cl.put(colKey, rowKey, type.cast(value));
+    public <T> Map2D<K,T> filterByType(Class<T> type)
+    {
+        Map2D<K,T> copy = new Map2D<>();
+        for(K key1: key1Set()){
+
+            for(K key2: key2Set(key1)){
+
+                List<V> arr = m.get(key1).get(key2);
+                for(V value: arr){
+
+                    if(type.isInstance(value)){
+                        copy.put(key1, key2, type.cast(value));
                     }
                 }
             }
         }
-        System.out.println("cloned");
+        return copy;
+    }
 
-        return cl;
+    public Iterator<V> iterator()
+    {
+        return valueList().iterator();
+    }
+
+    public List<V> valueList()
+    {
+        //Gets all the items from the map of ( map of) arraylist<V>
+        //and then puts it in one list
+        List<V> values = m.values()
+                          .stream()
+                          .flatMap(v -> v.values()
+                                         .stream()
+                                         .flatMap(v2 -> v2.stream()))
+                           .collect(Collectors.toList());
+
+        return values;
+    }
+
+    public Set<K> key1Set()
+    {
+        return m.keySet();
+    }
+
+    public Set<K> key2Set(K key1)
+    {
+        Set<K> s = new HashSet<>();
+
+        if(m.containsKey(key1))
+        {
+            s = m.get(key1).keySet();
+        }
+        
+        return s;
     }
 }

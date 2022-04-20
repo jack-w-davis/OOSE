@@ -1,4 +1,4 @@
-public class DoorParser extends TileParser
+public class DoorParser extends GameObjParser
 {
     public static final String PATTERN = "(D[HV])(\\s+\\d){3}";
 
