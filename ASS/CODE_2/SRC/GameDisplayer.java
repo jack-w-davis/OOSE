@@ -28,7 +28,7 @@ public class GameDisplayer
 
     private int[][] getWallIntCode()
     {
-        Map2D<Integer,OrientGameObj> map = maze.getDrawable(OrientGameObj.class);
+        Map2DList<Integer,OrientGameObj> map = maze.getDrawable(OrientGameObj.class);
         
         int numRows = maze.getNumRows() + 1;
         int numCols = maze.getNumCols() + 1;

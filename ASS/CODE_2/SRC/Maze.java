@@ -9,7 +9,7 @@ public class Maze
 
     //TODO: Add player object here
     //TODO: Explain how i work lol
-    private Map2D<Integer,GameObj> objMap = new Map2D<>();
+    private Map2DList<Integer,GameObj> objMap = new Map2DList<>();
         
     public Maze()
     {}
@@ -43,10 +43,10 @@ public class Maze
 
     //TODO: RENAME ME TO FITLER TYPE OR SOMETHING
     // @SuppressWarnings("unchecked")
-    public <T extends GameObj> Map2D<Integer,T> getDrawable(Class<T> type)
+    public <T extends GameObj> Map2DList<Integer,T> getDrawable(Class<T> type)
     {
-        // Map2D<Integer,T> clone = new Map2D<>();
-        // Map2D<Integer,T> copy = objMap.filterByType(type);
+        // Map2DList<Integer,T> clone = new Map2DList<>();
+        // Map2DList<Integer,T> copy = objMap.filterByType(type);
         
         // for(int key1: copy.key1Set())
         // {

@@ -1,9 +1,9 @@
 import java.util.*;
 import java.util.stream.*;
 
-public class Map2D<K,V> implements Iterable<V>
+public class Map2D<K,V> 
 {
-    private Map<K,Map<K,ArrayList<V>>> m = new HashMap<>();
+    private Map<K,Map<K,V>> m = new HashMap<>();
 
     public Map2D(){}
 
@@ -13,19 +13,14 @@ public class Map2D<K,V> implements Iterable<V>
         //It creates a new map for that key then adds it
         if(! m.containsKey(key1))
         {
-            m.put(key1,new HashMap<K,ArrayList<V>>());
+            m.put(key1,new HashMap<K,V>());
         }
         putInnerKey(key1, key2, value);
     }
 
     private void putInnerKey(K key1, K key2, V value)
     {
-        //If Key 2 doesn't exists
-        if(! m.get(key1).containsKey(key2))
-        {
-            m.get(key1).put(key2, new ArrayList<V>());
-        }
-        m.get(key1).get(key2).add(value);
+        m.get(key1).put(key2,value);
     }
     
     public boolean containsKeys(K key1, K key2)
@@ -39,9 +34,9 @@ public class Map2D<K,V> implements Iterable<V>
         return contains;
     }
 
-    public List<V> getValue(K key1, K key2)
+    public V get(K key1, K key2)
     {
-        List<V> retVal = null;
+        V retVal = null;
         if(containsKeys(key1, key2))
         {
             retVal = m.get(key1).get(key2);
@@ -53,38 +48,16 @@ public class Map2D<K,V> implements Iterable<V>
     {
         Map2D<K,T> copy = new Map2D<>();
         for(K key1: key1Set()){
-
             for(K key2: key2Set(key1)){
 
-                List<V> arr = m.get(key1).get(key2);
-                for(V value: arr){
-
-                    if(type.isInstance(value)){
+                V value = m.get(key1).get(key2);
+                    if(type.isInstance(value))
+                    {
                         copy.put(key1, key2, type.cast(value));
                     }
-                }
             }
         }
         return copy;
-    }
-
-    public Iterator<V> iterator()
-    {
-        return valueList().iterator();
-    }
-
-    public List<V> valueList()
-    {
-        //Gets all the items from the map of ( map of) arraylist<V>
-        //and then puts it in one list
-        List<V> values = m.values()
-                          .stream()
-                          .flatMap(v -> v.values()
-                                         .stream()
-                                         .flatMap(v2 -> v2.stream()))
-                           .collect(Collectors.toList());
-
-        return values;
     }
 
     public Set<K> key1Set()
