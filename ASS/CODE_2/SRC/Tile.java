@@ -1,22 +1,25 @@
 import java.util.*;
 
-public class Tile 
+public class Tile<T>
 {
-    private Map2D<Integer,Node<String>> spaces = new Map2D<>();
+    private Map2D<Integer,Node<T>> spaces = new Map2D<>();
+    private int xOffset;
+    private int yOffset;
 
-    public Tile()
+    public Tile(int inyOffset, int inxOffset)
     {
-        
+        yOffset = inyOffset;
+        xOffset = inxOffset;
     }
 
-    public void put(int row, int col, Node<String> inSpace)
+    public void put(int y, int x, Node<T> inSpace)
     {
-        spaces.put(row, col, inSpace);
+        spaces.put(y, x, inSpace);
     }
 
-    public Node<String> get(int row,int col)
+    public Node<T> get(int y,int x)
     {
-        return spaces.get(row,col);
+        return spaces.get(y,x);
     }
 
     public Set<Integer> key1Set()
@@ -24,9 +27,9 @@ public class Tile
         return spaces.key1Set();
     }
 
-    public Set<Integer> key2Set(int row)
+    public Set<Integer> key2Set(int y)
     {
-        return spaces.key2Set(row);
+        return spaces.key2Set(y);
     }
 
 }

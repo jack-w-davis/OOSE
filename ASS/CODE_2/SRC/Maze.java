@@ -43,7 +43,7 @@ public class Maze
 
     //TODO: RENAME ME TO FITLER TYPE OR SOMETHING
     // @SuppressWarnings("unchecked")
-    public <T extends GameObj> Map2DList<Integer,T> getDrawable(Class<T> type)
+    public <T> Map2DList<Integer,T> getDrawable(Class<T> type)
     {
         // Map2DList<Integer,T> clone = new Map2DList<>();
         // Map2DList<Integer,T> copy = objMap.filterByType(type);

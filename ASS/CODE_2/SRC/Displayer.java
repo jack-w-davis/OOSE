@@ -1,7 +1,10 @@
+import java.util.*;
+
 //The abstract interface
 interface Displayer
 {
-    abstract public Grid performOperation(Maze maze);
+    abstract public Grid<String> performOperation(Maze maze);
+    
 }
 
 abstract class DisplayerDecorator implements Displayer
@@ -19,152 +22,177 @@ abstract class DisplayerDecorator implements Displayer
     }
 }
 
-class WallDisplayer extends DisplayerDecorator
+class WallDisplayer implements Displayer
 {
-    public WallDisplayer(Displayer inDisplayer)
+    private int rowTileSize;
+    private int colTileSize;
+
+    public WallDisplayer(int inRowTileSize, int inColTileSize)
     {
-        setNext(inDisplayer);
+        colTileSize = inColTileSize;
+        rowTileSize = inRowTileSize;
     }
 
-    public Grid performOperation(Maze maze)
+    public Grid<String> performOperation(Maze maze)
     {
-        Grid grid = getNext().performOperation(maze);
-        getWalls(grid, maze);
+        Grid<Integer> grid = new Grid<>(maze,rowTileSize,colTileSize,0);
+        getInnerWalls(grid, maze);
+        perimWalls(grid);
+        Grid<String> output = convertGrid(grid);
+        print(output);
 
-        grid.print();
-
-        return grid;
+        return output;
     }
 
-    private Grid getWalls(Grid grid, Maze maze)
+    private void getInnerWalls(Grid<Integer> grid, Maze maze)
     {
         Map2DList<Integer,OrientGameObj> map = maze.getDrawable(OrientGameObj.class);
-
-        int[][] wallType = new int[grid.getYSize()][grid.getXSize()];
 
         for(OrientGameObj o: map.valueList())
         {
             switch(o.getOri())
             {
                 case VERTICAL:
-                    verticalWall(o,grid,wallType);
+                    verticalWall(o,grid);
                     break;
                 case HORIZONTAL:
-                    horizontalWall(o,grid,wallType);
+                    horizontalWall(o,grid);
                     break;
             }
         }
-        return grid;
     }
 
-    private void verticalWall(OrientGameObj obj,Grid grid,int[][] wallType)
+    private void perimWalls(Grid<Integer> grid)
+    {
+        perimLeftRight(grid);
+        perimUpDown(grid);
+    }
+    
+    private void perimLeftRight(Grid<Integer> grid)
+    {
+        int maxY = grid.getYGridSize();
+        int maxX = grid.getXGridSize();
+        for(int y = 0; y < maxY; y++)
+        {
+            int left  = grid.getSpace(y,     0).getValue();
+            int right = grid.getSpace(y, (maxX - 1)).getValue();
+
+            if(y != 0){
+                left  = applyBitOr(left, Dir.UP);
+                right = applyBitOr(right, Dir.UP);
+
+            }
+            if(y != (maxY-1)){
+                left  = applyBitOr(left, Dir.DOWN);
+                right = applyBitOr(right, Dir.DOWN);
+            }
+
+            grid.getSpace(y,   0).setValue(left);
+            grid.getSpace(y, (maxX-1)).setValue(right);
+        }
+    }
+
+    private void perimUpDown(Grid<Integer> grid)
+    {
+        int maxY = grid.getYGridSize();
+        int maxX = grid.getXGridSize();
+        for(int x = 0; x < maxX; x++)
+        {
+            int up   = grid.getSpace(         0,x).getValue();
+            int down = grid.getSpace((maxY - 1),x).getValue();
+
+            if(x != 0){
+                up    = applyBitOr(up,   Dir.LEFT);
+                down  = applyBitOr(down, Dir.LEFT);
+
+            }
+            if(x != (maxX-1)){
+                up    = applyBitOr(up,   Dir.RIGHT);
+                down  = applyBitOr(down, Dir.RIGHT);
+            }
+
+            grid.getSpace(0,x).setValue(up);
+            grid.getSpace((maxY-1),x).setValue(down);
+        }
+    }
+
+    //TODO: IF time permits refactor me
+    private void verticalWall(OrientGameObj obj,Grid<Integer> grid)
     {
         int row = obj.getRow();
         int col = obj.getCol();
-        Tile t = grid.getTile(row, col);
 
-        // for(int row = 0; row < numRows + 1; row++)
-        // {
-            // if(row != 0){
-                // wallArr[row][0]       = (wallArr[row][0]       | getDirMask(Dir.UP)); 
-                // wallArr[row][numCols] = (wallArr[row][numCols] | getDirMask(Dir.UP)); 
-            // }
-            // if(row != numRows){
-                // wallArr[row][0]       = (wallArr[row][0]       | getDirMask(Dir.DOWN)); 
-                // wallArr[row][numCols] = (wallArr[row][numCols] | getDirMask(Dir.DOWN)); 
-            // }
-        // }
-
-        // wallType[row  ][col] = (wallType[row  ][col] | getDirMask(Dir.DOWN));
-        // wallType[row+1][col] = (wallType[row+1][col] | getDirMask(Dir.UP));
-
-    }
-
-    private void horizontalWall(OrientGameObj obj,Grid grid,int[][] wallType)
-    {
-        int row = obj.getRow();
-        int col = obj.getCol();
-
-        // wallArr[row][col  ] = (wallArr[row][col  ] | getDirMask(Dir.RIGHT));
-        // wallArr[row][col+1] = (wallArr[row][col+1] | getDirMask(Dir.LEFT));
-    }
-
-    private applyBitOr(int[][] wallType, int y, int x)
-    {
-
-    }
-
-    // private int[][] getPerimWallCode(Maze maze, int[][] wallArr)
-    // {
-    //     wallArr = getHorizontalPerimWall(wallArr);
-    //     wallArr = getVerticalPerimWall(wallArr);
-    //     return wallArr;
-    // }
-
-    // private int[][] getVerticalPerimWall(Maze maze, int[][] wallArr)
-    // {
-    //     int numRows = maze.getNumRows();
-    //     int numCols = maze.getNumCols();
-
-    //     for(int row = 0; row < numRows + 1; row++)
-    //     {
-    //         if(row != 0){
-    //             wallArr[row][0]       = (wallArr[row][0]       | getDirMask(Dir.UP)); 
-    //             wallArr[row][numCols] = (wallArr[row][numCols] | getDirMask(Dir.UP)); 
-    //         }
-    //         if(row != numRows){
-    //             wallArr[row][0]       = (wallArr[row][0]       | getDirMask(Dir.DOWN)); 
-    //             wallArr[row][numCols] = (wallArr[row][numCols] | getDirMask(Dir.DOWN)); 
-    //         }
-    //     }
-
-    //     return wallArr;
-    // }
-
-    // private int[][] getHorizontalPerimWall(Maze maze, int[][] wallArr)
-    // {
-    //     int numRows = maze.getNumRows();
-    //     int numCols = maze.getNumCols();
-
-    //     for(int col = 0; col < numCols + 1; col++){
-
-    //         if(col != 0){
-    //             wallArr[0]      [col] = (wallArr[0]      [col] | getDirMask(Dir.LEFT)); 
-    //             wallArr[numRows][col] = (wallArr[numRows][col] | getDirMask(Dir.LEFT)); 
-    //         }
-    //         if(col != numCols){
-    //             wallArr[0]      [col] = (wallArr[0]      [col] | getDirMask(Dir.RIGHT)); 
-    //             wallArr[numRows][col] = (wallArr[numRows][col] | getDirMask(Dir.RIGHT)); 
-    //         }
-    //     }
-
-    //     return wallArr;
-    // }
-
-    // private String[][] convertWallIntToChar(Maze maze, Grid grid)
-    // {
-    //     int cornerColSize = (maze.getNumCols() + 1);
-    //     int cornerRowSize = (maze.getNumRows() + 1);
-
-    //     String[][] ret = new String[cornerRowSize][cornerColSize];
+        Tile<Integer> t = grid.getTile(row, col);
         
-    //     for(int row = 0; row < (maze.getNumRows() + 1); row++)
-    //     {
-    //         for(int col = 0; col < (maze.getNumCols() + 1); col++)
-    //         {
-    //             if(wallType[row][col] != 0)
-    //             {
-    //                 ret[row][col] = "W" + wallType[row][col];
-    //             }
-    //             else
-    //             {
-    //                 ret[row][col] = " "; 
-    //             }
-    //         }
-    //     }
+        for(int y : t.key1Set())
+        {
+            int wallType = t.get(y,0).getValue();
+            if(y != 0){
+                wallType = applyBitOr(wallType, Dir.UP);
+            }
+            if(y != (grid.getYTileSize() - 1)){
+                wallType = applyBitOr(wallType, Dir.DOWN);
+            }
+            t.get(y,0).setValue(wallType);
+        }
+    }
 
-    //     return ret;
-    // }
+    private void horizontalWall(OrientGameObj obj,Grid<Integer> grid)
+    {
+        int row = obj.getRow();
+        int col = obj.getCol();
+
+        Tile<Integer> t = grid.getTile(row, col);
+        
+        for(int x : t.key2Set(0))
+        {
+            int wallType = t.get(0,x).getValue();
+            if(x != 0){
+                wallType = applyBitOr(wallType, Dir.LEFT);
+            }
+            if(x != (grid.getXTileSize() - 1)){
+                wallType = applyBitOr(wallType, Dir.RIGHT);
+            }
+            t.get(0,x).setValue(wallType);
+        }
+    }
+
+    //TODO: Maybe make me a helper function of some util class
+    private Grid<String> convertGrid(Grid<Integer> grid)
+    {
+        Grid<String> output = new Grid<>(grid," ");
+
+        for(int y: grid.key1Set())
+        {
+            for(int x: grid.key2Set(y))
+            {
+                String val = " ";
+                if(0 < grid.getSpace(y, x).getValue())
+                {
+                    val = "W" + String.valueOf(grid.getSpace(y, x).getValue());
+                } 
+                output.getSpace(y,x).setValue(val);
+            }
+        }
+        return output;
+    }
+
+    private int applyBitOr(int val, Dir dir)
+    {
+        return (val | getDirMask(dir));
+    }
+
+    private void print(Grid<String> grid)
+    {
+        for(int y = 0; y < grid.getYGridSize(); y++)
+        {
+            for(int x = 0; x < grid.getXGridSize(); x++)
+            {
+                System.out.printf("%3s",grid.getSpace(y, x).getValue());
+            }
+            System.out.printf("\n");
+        }
+    }
 
     private int getDirMask(Dir d)
     {
@@ -185,5 +213,116 @@ class WallDisplayer extends DisplayerDecorator
                 break;
         }
         return mask;
+    }
+}
+
+enum Dir
+{
+    UP,
+    RIGHT,
+    DOWN,
+    LEFT
+}
+
+class DoorDisplayer extends DisplayerDecorator
+{
+    public DoorDisplayer(Displayer inDisplayer)
+    {
+        setNext(inDisplayer);
+    }
+
+    public Grid<String> performOperation(Maze maze)
+    {
+        Grid<String> grid = getNext().performOperation(maze);
+
+        placeDoors(grid, maze);
+
+        return grid;
+    }
+
+    private void placeDoors(Grid<String> grid, Maze maze)
+    {
+        Map2DList<Integer,Door> map = maze.getDrawable(Door.class);
+        
+        for(Door d: map.valueList())
+        {
+            switch(d.getOri())
+            {
+                case VERTICAL:
+                    verticalDoor(d,grid);
+                    break;
+                case HORIZONTAL:
+                    horizontalDoor(d,grid);
+                    break;
+            }
+        }
+    }
+
+    private void verticalDoor(Door obj, Grid<String> grid)
+    {
+        int row = obj.getRow();
+        int col = obj.getCol();
+        Tile<String> t = grid.getTile(row, col);
+
+        int yMax = Collections.max(t.key1Set());
+
+        for(int y : t.key1Set())
+        {
+            if( !(y==0 || y==yMax) ){
+                t.get(y,0).setValue("D");
+            }
+        }
+    }
+
+    private void horizontalDoor(Door obj, Grid<String> grid)
+    {
+        int row = obj.getRow();
+        int col = obj.getCol();
+        Tile<String> t = grid.getTile(row, col);
+
+        Set<Integer> keySet = t.key2Set(0);
+
+        int xMax = Collections.max(keySet);
+
+        for(int x : keySet)
+        {
+            if( !(x==0 || x==xMax) ){
+                t.get(0,x).setValue("D");
+            }
+        }
+    }
+}
+
+
+class ColourDisplayer extends DisplayerDecorator
+{
+    public ColourDisplayer(Displayer inDisplayer)
+    {
+        setNext(inDisplayer);
+    }
+
+    public Grid<String> performOperation(Maze maze)
+    {
+        Grid<String> grid = getNext().performOperation(maze);
+
+        return grid;
+    }
+
+    private void setColour(Grid<String> grid, Maze maze)
+    {
+        Map2DList<Integer,Colour> map = maze.getDrawable(Colour.class);
+
+        for(Colour c: map.valueList())
+        {
+            // switch(d.getOri())
+            // {
+                // case VERTICAL:
+                //     verticalDoor(d,grid);
+                //     break;
+                // case HORIZONTAL:
+                //     horizontalDoor(d,grid);
+                //     break;
+            // }
+        }
     }
 }

@@ -11,11 +11,12 @@ public class MazeDisplayer implements Displayer
         rowTileSize = inRowTileSize;
     }
 
-    public Grid performOperation(Maze maze)
+    public Grid<String> performOperation(Maze maze)
     {
         int rows = maze.getNumRows();
         int cols = maze.getNumCols();
-        return new Grid(rowTileSize,colTileSize,rows,cols);
+        // return new Grid(rowTileSize,colTileSize,rows,cols);
+        return null;
     }
 
 }

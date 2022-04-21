@@ -42,7 +42,7 @@ abstract class OrientGameObj extends GameObj
     }
 }
 
-interface Colour extends Drawable
+interface Colour
 {
     abstract public void setColour(int inColour);
     abstract public int getColour();
