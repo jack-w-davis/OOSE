@@ -43,7 +43,7 @@ public class Game
                 
         // WallDisplayer      w       = new WallDisplayer(1, 3);
         // DoorDisplayer      d       = new DoorDisplayer(w);
-        // IntToCharConverter charMap = new IntToCharConverter("../RES/map_values.txt",d);
+        // IntToCharConverter charMap = new IntToCharConverte r("../RES/map_values.txt",d);
         // charMap.performOperation(m);
 
         IntToCharConverter charMap = 
