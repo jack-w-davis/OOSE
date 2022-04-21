@@ -15,7 +15,6 @@ public class MazeDisplayer implements Displayer
     {
         int rows = maze.getNumRows();
         int cols = maze.getNumCols();
-
         return new Grid(rowTileSize,colTileSize,rows,cols);
     }
 

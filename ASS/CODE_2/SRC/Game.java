@@ -43,7 +43,7 @@ public class Game
         //-----------------DISPLAYER SHIT---------------------------------------
 
             MazeDisplayer dis = new MazeDisplayer(1,3);
-            WallDisplayer wd = new WallDisplayer(dis);
+            dis.setNext();
 
             wd.performOperation(m);
 

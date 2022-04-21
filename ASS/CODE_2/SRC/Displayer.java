@@ -1,13 +1,7 @@
 //The abstract interface
 interface Displayer
 {
-    // abstract public int getRowTileSize();
-    // abstract public int getColTileSize();
-    // abstract public int getTotalRowTileSize(int numRows);
-    // abstract public int getTotalColTileSize(int numCols);
-
     abstract public Grid performOperation(Maze maze);
-    
 }
 
 abstract class DisplayerDecorator implements Displayer
@@ -35,35 +29,69 @@ class WallDisplayer extends DisplayerDecorator
     public Grid performOperation(Maze maze)
     {
         Grid grid = getNext().performOperation(maze);
-        
-        // int[][] wallCodes = getWallIntCode(maze);
-        // wallCodes = getPerimWallCode(maze, wallCodes);
-        
-        return null;
+        getWalls(grid, maze);
+
+        grid.print();
+
+        return grid;
     }
 
-    private int[][] getWallIntCode(Maze maze)
+    private Grid getWalls(Grid grid, Maze maze)
     {
         Map2DList<Integer,OrientGameObj> map = maze.getDrawable(OrientGameObj.class);
-        
-        int numRows = maze.getNumRows() + 1;
-        int numCols = maze.getNumCols() + 1;
 
-        int[][] wallArr = new int[numRows][numCols];
+        int[][] wallType = new int[grid.getYSize()][grid.getXSize()];
 
         for(OrientGameObj o: map.valueList())
         {
             switch(o.getOri())
             {
                 case VERTICAL:
-                    verticalWall(o,wallArr);
+                    verticalWall(o,grid,wallType);
                     break;
                 case HORIZONTAL:
-                    horizontalWall(o,wallArr);
+                    horizontalWall(o,grid,wallType);
                     break;
             }
         }
-        return wallArr;
+        return grid;
+    }
+
+    private void verticalWall(OrientGameObj obj,Grid grid,int[][] wallType)
+    {
+        int row = obj.getRow();
+        int col = obj.getCol();
+        Tile t = grid.getTile(row, col);
+
+        // for(int row = 0; row < numRows + 1; row++)
+        // {
+            // if(row != 0){
+                // wallArr[row][0]       = (wallArr[row][0]       | getDirMask(Dir.UP)); 
+                // wallArr[row][numCols] = (wallArr[row][numCols] | getDirMask(Dir.UP)); 
+            // }
+            // if(row != numRows){
+                // wallArr[row][0]       = (wallArr[row][0]       | getDirMask(Dir.DOWN)); 
+                // wallArr[row][numCols] = (wallArr[row][numCols] | getDirMask(Dir.DOWN)); 
+            // }
+        // }
+
+        // wallType[row  ][col] = (wallType[row  ][col] | getDirMask(Dir.DOWN));
+        // wallType[row+1][col] = (wallType[row+1][col] | getDirMask(Dir.UP));
+
+    }
+
+    private void horizontalWall(OrientGameObj obj,Grid grid,int[][] wallType)
+    {
+        int row = obj.getRow();
+        int col = obj.getCol();
+
+        // wallArr[row][col  ] = (wallArr[row][col  ] | getDirMask(Dir.RIGHT));
+        // wallArr[row][col+1] = (wallArr[row][col+1] | getDirMask(Dir.LEFT));
+    }
+
+    private applyBitOr(int[][] wallType, int y, int x)
+    {
+
     }
 
     // private int[][] getPerimWallCode(Maze maze, int[][] wallArr)
@@ -113,48 +141,30 @@ class WallDisplayer extends DisplayerDecorator
     //     return wallArr;
     // }
 
-    private String[][] convertWallIntToChar(Maze maze, int[][] wallCode)
-    {
-        int cornerColSize = (maze.getNumCols() + 1);
-        int cornerRowSize = (maze.getNumRows() + 1);
+    // private String[][] convertWallIntToChar(Maze maze, Grid grid)
+    // {
+    //     int cornerColSize = (maze.getNumCols() + 1);
+    //     int cornerRowSize = (maze.getNumRows() + 1);
 
-        String[][] ret = new String[cornerRowSize][cornerColSize];
+    //     String[][] ret = new String[cornerRowSize][cornerColSize];
         
-        for(int row = 0; row < (maze.getNumRows() + 1); row++)
-        {
-            for(int col = 0; col < (maze.getNumCols() + 1); col++)
-            {
-                if(wallCode[row][col] != 0)
-                {
-                    ret[row][col] = "W" + wallCode[row][col];
-                }
-                else
-                {
-                    ret[row][col] = " "; 
-                }
-            }
-        }
+    //     for(int row = 0; row < (maze.getNumRows() + 1); row++)
+    //     {
+    //         for(int col = 0; col < (maze.getNumCols() + 1); col++)
+    //         {
+    //             if(wallType[row][col] != 0)
+    //             {
+    //                 ret[row][col] = "W" + wallType[row][col];
+    //             }
+    //             else
+    //             {
+    //                 ret[row][col] = " "; 
+    //             }
+    //         }
+    //     }
 
-        return ret;
-    }
-
-    private void verticalWall(OrientGameObj obj,int[][] wallArr)
-    {
-        int row = obj.getRow();
-        int col = obj.getCol();
-
-        wallArr[row  ][col] = (wallArr[row  ][col] | getDirMask(Dir.DOWN));
-        wallArr[row+1][col] = (wallArr[row+1][col] | getDirMask(Dir.UP));
-    }
-
-    private void horizontalWall(OrientGameObj obj,int[][] wallArr)
-    {
-        int row = obj.getRow();
-        int col = obj.getCol();
-
-        wallArr[row][col  ] = (wallArr[row][col  ] | getDirMask(Dir.RIGHT));
-        wallArr[row][col+1] = (wallArr[row][col+1] | getDirMask(Dir.LEFT));
-    }
+    //     return ret;
+    // }
 
     private int getDirMask(Dir d)
     {
