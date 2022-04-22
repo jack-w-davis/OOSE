@@ -49,6 +49,11 @@ public class Map2DList<K,V> implements Iterable<V>
         return retVal;
     }
 
+    public void remove(K key1, K key2, int index)
+    {
+        m.get(key1).get(key2).remove(index);
+    }
+
     public <T> Map2DList<K,T> filterByType(Class<T> type)
     {
         Map2DList<K,T> copy = new Map2DList<>();

@@ -48,12 +48,6 @@ interface Colour
     abstract public int getColour();
 }
 
-interface Drawable
-{
-    abstract public char getCharCode();
-}
-
-
 class Message extends GameObj
 {
     private String text;
@@ -66,9 +60,14 @@ class Message extends GameObj
     {
         text = inText;
     }
+
+    public String getText()
+    {
+        return text;
+    }
 }
 
-class Wall extends OrientGameObj implements Drawable
+class Wall extends OrientGameObj
 {
     public static final char CHAR_CODE = 'K';
 
@@ -76,7 +75,6 @@ class Wall extends OrientGameObj implements Drawable
     {
     }
 
-    //TODO: Change me based off walls surrounding
     public char getCharCode()
     {
         return CHAR_CODE;
@@ -86,11 +84,9 @@ class Wall extends OrientGameObj implements Drawable
 class Door extends OrientGameObj implements Colour
 {
     public static final char CHAR_CODE = 'D';
-
     private int colour;
 
-    public Door()
-    {}
+    public Door(){}
 
     public char getCharCode()
     {

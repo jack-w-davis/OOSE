@@ -61,7 +61,7 @@ public class Grid<T>
         int yOffset = (BORDER + ySize) *  curRow;
         int xOffset = (BORDER + xSize) *  curCol;
 
-        Tile<T> t = new Tile<>(yOffset,xOffset);
+        Tile<T> t = new Tile<>(ySize,xSize);
 
         // System.out.printf("TILE %d %d:\n",curRow,curCol);
         for(int y = 0; y < ((BORDER * 2) + ySize); y++)
@@ -125,14 +125,9 @@ public class Grid<T>
         }
     }
 
-    public Node<T> getSpace(int row, int col)
+    public Node<T> getSpace(int y, int x)
     {
-        return spaces.get(row,col);
-    }
-
-    public Node<T> getTileSpace(int row, int col, int y, int x)
-    {
-        return tiles.get(row, col).get(y,x);
+        return spaces.get(y,x);
     }
 
     public Tile<T> getTile(int row, int col)

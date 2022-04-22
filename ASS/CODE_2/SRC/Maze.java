@@ -6,6 +6,8 @@ public class Maze
     //      number of rows and columns is static 
     private int numRows = 0;
     private int numCols = 0;
+    private Boolean gameWon = false;
+    private Player player = new Player();
 
     //TODO: Add player object here
     //TODO: Explain how i work lol
@@ -19,6 +21,29 @@ public class Maze
         int row = obj.getRow();
         int col = obj.getCol();
         objMap.put(row, col, obj);
+    }
+
+    public void setPlayerCoords(int row, int col)
+    {
+        player.setCoords(row, col);
+    }
+
+    public void removeKeysAtTile(int row, int col)
+    {
+        List<GameObj> list = objMap.getValue(row, col);
+        
+        int index = 0;
+        while(index < list.size())
+        {
+            if(list.get(index) instanceof Key)
+            {
+                objMap.remove(row, col, index);
+            }
+            else
+            {
+                index++;
+            }
+        }
     }
 
     public void setRows(int dim)
@@ -41,29 +66,8 @@ public class Maze
         numCols = dim;
     }
 
-    //TODO: RENAME ME TO FITLER TYPE OR SOMETHING
-    // @SuppressWarnings("unchecked")
-    public <T> Map2DList<Integer,T> getDrawable(Class<T> type)
+    public <T> Map2DList<Integer,T> filterByType(Class<T> type)
     {
-        // Map2DList<Integer,T> clone = new Map2DList<>();
-        // Map2DList<Integer,T> copy = objMap.filterByType(type);
-        
-        // for(int key1: copy.key1Set())
-        // {
-        //     for(int key2: copy.key2Set(key1))
-        //     {
-        //         List<T> list = new ArrayList<>();
-        //         for(T obj: copy.getValue(key1, key2))
-        //         {
-        //             try
-        //             {
-        //                 clone.put(key1, key2,(T) obj.clone());
-        //             }catch(CloneNotSupportedException e)
-        //             {}
-        //         }
-        //     }
-        // }
         return objMap.filterByType(type);
     }
-
 }

@@ -37,6 +37,8 @@ public class MazeParser<T extends GameObjParser>
 
     private void parseLine(String line, Maze m)
     {
+        line = line.trim();
+
         for(T parser: parsers)
         {
             if(parser.validateLine(line))
