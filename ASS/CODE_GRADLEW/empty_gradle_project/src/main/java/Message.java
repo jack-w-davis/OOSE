@@ -1,3 +1,4 @@
+package davis.jack.mazegame;
 class Message extends GameObj
 {
     private String text;

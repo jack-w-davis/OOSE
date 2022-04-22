@@ -1,4 +1,4 @@
-
+package davis.jack.mazegame;
 
 public class App 
 {
@@ -7,11 +7,13 @@ public class App
         //Initializes the maze parser
         MazeParser<GameObjParser> parser = initParser();
         
-        Maze maze = parser.parseFileContent(IOUtils.readFile(args[1]));
+        Maze maze = parser.parseFileContent(IOUtils.readFile("RES/demoMap.txt"));
         
-        Displayer displayer = initDisplayer(args[2]);
+        Displayer displayer = initDisplayer();
 
         GameController cg = new GameController(displayer, maze);
+
+        cg.startGame();
 
     }
 
@@ -27,13 +29,13 @@ public class App
         return parser;
     }
 
-    public static Displayer initDisplayer(String fileLoc)
+    public static Displayer initDisplayer()
     {
         //Creates a nested decoration of 'Displayers', which all in turn
         //affect how the maze is displayed in some way.
         ColourDisplayer displayer =
             new ColourDisplayer(
-            new CodeToStrConverter(fileLoc,
+            new CodeToStrConverter("RES/map_values.txt",
             new KeyDisplayer(
             new DoorDisplayer(
             new WallDisplayer(1, 3)))));

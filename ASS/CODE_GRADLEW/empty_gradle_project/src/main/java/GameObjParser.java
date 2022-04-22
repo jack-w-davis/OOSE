@@ -1,3 +1,4 @@
+package davis.jack.mazegame;
 public abstract class GameObjParser 
 {
     public GameObjParser()

@@ -1,3 +1,4 @@
+package davis.jack.mazegame;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.io.*;
@@ -24,9 +25,21 @@ public class IOUtils
         {
             System.out.println("");
         }
-
-
         return list;
     }   
+
+    public static String getUserInput()
+    {
+        String retval = "";
+        try
+        {
+            retval = SC.next();
+        }catch(InputMismatchException e)
+        {
+            System.out.println(e);
+            String flush = SC.next();
+        }
+        return retval.trim();
+    }
 }
 

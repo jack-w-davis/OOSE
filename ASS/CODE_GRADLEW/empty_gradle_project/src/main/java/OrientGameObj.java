@@ -1,3 +1,4 @@
+package davis.jack.mazegame;
 abstract class OrientGameObj extends GameObj
 {
     private Orientation ori;

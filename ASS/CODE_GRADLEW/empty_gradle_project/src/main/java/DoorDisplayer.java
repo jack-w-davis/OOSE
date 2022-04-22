@@ -1,3 +1,4 @@
+package davis.jack.mazegame;
 
 import java.util.*;
 

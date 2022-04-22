@@ -1,3 +1,4 @@
+package davis.jack.mazegame;
 //TODO: Rename me
 public class Node<T>
 {

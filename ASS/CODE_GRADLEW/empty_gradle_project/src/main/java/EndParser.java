@@ -1,3 +1,4 @@
+package davis.jack.mazegame;
 public class EndParser extends GameObjParser 
 {
     public static final String PATTERN = "(E)(\\s+\\d){2}";

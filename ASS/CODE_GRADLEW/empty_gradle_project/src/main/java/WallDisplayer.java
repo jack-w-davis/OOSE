@@ -1,3 +1,4 @@
+package davis.jack.mazegame;
 
 class WallDisplayer implements Displayer
 {
