@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 class KeyParser extends GameObjParser
 {
     public static final String PATTERN = "(K)(\\s+\\d){3}";

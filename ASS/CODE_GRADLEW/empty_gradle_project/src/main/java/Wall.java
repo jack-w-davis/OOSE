@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 
 class Wall extends OrientGameObj
 {

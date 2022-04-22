@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 
 //The abstract interface
 interface Displayer

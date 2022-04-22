@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.io.*;
@@ -23,7 +22,7 @@ public class IOUtils
         }
         catch(IOException e)
         {
-            System.out.println("WHOOPSY FUCKING DO GRADLEW, NO EMPTY BLOCKS HERE");
+            System.out.println("");
         }
 
 

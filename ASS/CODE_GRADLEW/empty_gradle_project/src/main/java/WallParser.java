@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 class WallParser extends GameObjParser
 {
     public static final String PATTERN = "(W[VH])(\\s+\\d){2}";

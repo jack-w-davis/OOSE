@@ -1,16 +1,16 @@
-package davis.jack.mazegame;
 import java.util.*;
 
 public class Grid<T>
 {
     private static final int BORDER = 1;
-    private T defValue;
-    private int xSize;
-    private int ySize;
-    private int numRows;
-    private int numCols;
-    private int xTotalGridSize;
-    private int yTotalGridSize;
+
+    private T defValue;  //The default value that should be set 
+    private int ySize;   //The size of the inner cells rows
+    private int xSize;   //The size of the inner cells cols
+    private int numRows; //The number of rows
+    private int numCols; //The number of columns
+    private int xTotalGridSize; //The total size of grid with spaces
+    private int yTotalGridSize; 
 
     //A mapping of all the grid spaces
     private Map2D<Integer,Tile<T>> tiles  = new Map2D<>();
@@ -18,8 +18,8 @@ public class Grid<T>
     
     public Grid(Maze maze,int yTileSize,int xTileSize, T inDefValue)
     {
-        xSize   = xTileSize;
         ySize   = yTileSize;
+        xSize   = xTileSize;
         numRows = maze.getNumRows();
         numCols = maze.getNumCols();
         xTotalGridSize = ((1 + xSize) * numCols) + 1;
@@ -31,8 +31,8 @@ public class Grid<T>
 
     public Grid(Grid<?> inGrid, T inDefValue)
     {
-        xSize = inGrid.xSize;
         ySize = inGrid.ySize;
+        xSize = inGrid.xSize;
         numRows = inGrid.numRows;
         numCols = inGrid.numCols;
         defValue = inDefValue;

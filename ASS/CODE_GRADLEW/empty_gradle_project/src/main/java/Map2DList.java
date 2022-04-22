@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 import java.util.*;
 import java.util.stream.*;
 
@@ -52,9 +51,9 @@ public class Map2DList<K,V>
         return retVal;
     }
 
-    public void remove(K key1, K key2, int index)
+    public V remove(K key1, K key2, int index)
     {
-        m.get(key1).get(key2).remove(index);
+        return m.get(key1).get(key2).remove(index);
     }
 
     public <T> Map2DList<K,T> filterByType(Class<T> type)

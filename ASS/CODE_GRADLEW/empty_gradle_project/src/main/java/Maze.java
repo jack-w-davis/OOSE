@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 import java.util.*;
 
 public class Maze
@@ -7,7 +6,7 @@ public class Maze
     //      number of rows and columns is static 
     private int numRows = 0;
     private int numCols = 0;
-    // private Boolean gameWon = false;
+    private Boolean isGameWon = false;
     private Player player = new Player();
 
     //TODO: Add player object here
@@ -15,7 +14,9 @@ public class Maze
     private Map2DList<Integer,GameObj> objMap = new Map2DList<>();
         
     public Maze()
-    {}
+    {
+        
+    }
 
     public void put(GameObj obj)
     {   
@@ -29,6 +30,27 @@ public class Maze
         player.setCoords(row, col);
     }
 
+    public int getPlayerCol()
+    {
+        return player.getCol();
+    }
+
+    
+    public int getPlayerRow()
+    {
+        return player.getRow();
+    }
+
+    public Boolean hasWonGame()
+    {
+        return isGameWon;
+    }
+
+    private void addKeyToPlayerInv(Key k)
+    {
+        player.addKeyToPlayerInv(k);
+    }
+
     public void removeKeysAtTile(int row, int col)
     {
         List<GameObj> list = objMap.getValue(row, col);
@@ -38,7 +60,7 @@ public class Maze
         {
             if(list.get(index) instanceof Key)
             {
-                objMap.remove(row, col, index);
+                // objMap.remove(row, col, index);
             }
             else
             {

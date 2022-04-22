@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 
 public class StartParser extends GameObjParser
 {

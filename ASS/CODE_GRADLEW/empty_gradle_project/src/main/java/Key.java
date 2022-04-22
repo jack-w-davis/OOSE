@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 class Key extends GameObj implements Colour
 {
     public static final char CHAR_CODE = 'K';

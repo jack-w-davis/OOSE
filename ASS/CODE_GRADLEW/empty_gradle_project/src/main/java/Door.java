@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 class Door extends OrientGameObj implements Colour
 {
     public static final char CHAR_CODE = 'D';

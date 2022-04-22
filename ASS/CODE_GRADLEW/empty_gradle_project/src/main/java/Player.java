@@ -1,8 +1,12 @@
-package davis.jack.mazegame;
+
+import java.util.*;
+
 public class Player 
 {
     private int row;
     private int col;
+
+    private List<Key> keys = new ArrayList<>();
 
     public Player()
     {
@@ -13,6 +17,11 @@ public class Player
     {
         row = inRow;
         col = inCol;
+    }
+
+    public void addKeyToPlayerInv(Key k)
+    {
+        keys.add(k);
     }
 
     public int getRow()

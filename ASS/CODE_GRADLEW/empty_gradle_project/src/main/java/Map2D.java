@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 import java.util.*;
 
 public class Map2D<K,V> 

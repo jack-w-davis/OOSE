@@ -1,24 +1,24 @@
-package davis.jack.mazegame;
+
 
 public class App 
 {
     public static void main(String[] args)
     {
+        //Initializes the maze parser
         MazeParser<GameObjParser> parser = initParser();
-        Maze maze = parser.parseFileContent(IOUtils.readFile("../RES/demoMap.txt"));
+        
+        Maze maze = parser.parseFileContent(IOUtils.readFile(args[1]));
+        
+        Displayer displayer = initDisplayer(args[2]);
 
-        Displayer displayer = initDisplayer();
-        Grid<String> g = displayer.performOperation(maze);
-        print(g);
+        GameController cg = new GameController(displayer, maze);
 
-        maze.removeKeysAtTile(1,1);
-
-        g = displayer.performOperation(maze);
-        print(g);
     }
 
     public static MazeParser<GameObjParser> initParser()
     {
+        //Creates the mazeParser and adds the individual line parser
+        //to it.
         MazeParser<GameObjParser> parser = new MazeParser<>();
         parser.addParser(new DoorParser());
         parser.addParser(new WallParser());
@@ -27,17 +27,18 @@ public class App
         return parser;
     }
 
-    public static Displayer initDisplayer()
+    public static Displayer initDisplayer(String fileLoc)
     {
-
-        //TODO: Rename displayer to something better, I.E. wall, door and key
-        //      dont display them, they get the code
+        //Creates a nested decoration of 'Displayers', which all in turn
+        //affect how the maze is displayed in some way.
         ColourDisplayer displayer =
             new ColourDisplayer(
-            new CodeToStrConverter("../RES/map_values.txt",
+            new CodeToStrConverter(fileLoc,
             new KeyDisplayer(
             new DoorDisplayer(
             new WallDisplayer(1, 3)))));
+
+        PlayerDisplayer playDis = new PlayerDisplayer(displayer);
 
         String[] ansiColours = {
             "\033[0;31m", //0: RED
@@ -52,7 +53,7 @@ public class App
             displayer.put((i+1), ansiColours[i]);
         }
 
-        return displayer;
+        return playDis;
     }
 
     public static void print(Grid<String> grid)

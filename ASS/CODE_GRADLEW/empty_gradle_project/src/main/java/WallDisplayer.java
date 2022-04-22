@@ -1,4 +1,4 @@
-package davis.jack.mazegame;
+
 class WallDisplayer implements Displayer
 {
     private int rowTileSize;
@@ -55,13 +55,13 @@ class WallDisplayer implements Displayer
             int right = grid.getSpace(y, (maxX - 1)).getValue();
 
             if(y != 0){
-                left  = applyBitOr(left, Dir.UP);
-                right = applyBitOr(right, Dir.UP);
+                left  = applyBitOr(left, Direction.UP);
+                right = applyBitOr(right, Direction.UP);
 
             }
             if(y != (maxY-1)){
-                left  = applyBitOr(left, Dir.DOWN);
-                right = applyBitOr(right, Dir.DOWN);
+                left  = applyBitOr(left, Direction.DOWN);
+                right = applyBitOr(right, Direction.DOWN);
             }
 
             grid.getSpace(y,   0).setValue(left);
@@ -79,13 +79,13 @@ class WallDisplayer implements Displayer
             int down = grid.getSpace((maxY - 1),x).getValue();
 
             if(x != 0){
-                up    = applyBitOr(up,   Dir.LEFT);
-                down  = applyBitOr(down, Dir.LEFT);
+                up    = applyBitOr(up,   Direction.LEFT);
+                down  = applyBitOr(down, Direction.LEFT);
 
             }
             if(x != (maxX-1)){
-                up    = applyBitOr(up,   Dir.RIGHT);
-                down  = applyBitOr(down, Dir.RIGHT);
+                up    = applyBitOr(up,   Direction.RIGHT);
+                down  = applyBitOr(down, Direction.RIGHT);
             }
 
             grid.getSpace(0,x).setValue(up);
@@ -105,10 +105,10 @@ class WallDisplayer implements Displayer
         {
             int wallType = t.get(y,0).getValue();
             if(y != 0){
-                wallType = applyBitOr(wallType, Dir.UP);
+                wallType = applyBitOr(wallType, Direction.UP);
             }
             if(y != (grid.getYTileSize() - 1)){
-                wallType = applyBitOr(wallType, Dir.DOWN);
+                wallType = applyBitOr(wallType, Direction.DOWN);
             }
             t.get(y,0).setValue(wallType);
         }
@@ -125,10 +125,10 @@ class WallDisplayer implements Displayer
         {
             int wallType = t.get(0,x).getValue();
             if(x != 0){
-                wallType = applyBitOr(wallType, Dir.LEFT);
+                wallType = applyBitOr(wallType, Direction.LEFT);
             }
             if(x != (grid.getXTileSize() - 1)){
-                wallType = applyBitOr(wallType, Dir.RIGHT);
+                wallType = applyBitOr(wallType, Direction.RIGHT);
             }
             t.get(0,x).setValue(wallType);
         }
@@ -154,12 +154,12 @@ class WallDisplayer implements Displayer
         return output;
     }
 
-    private int applyBitOr(int val, Dir dir)
+    private int applyBitOr(int val, Direction dir)
     {
         return (val | getDirMask(dir));
     }
 
-    private int getDirMask(Dir d)
+    private int getDirMask(Direction d)
     {
         int mask = 0;
         switch(d)

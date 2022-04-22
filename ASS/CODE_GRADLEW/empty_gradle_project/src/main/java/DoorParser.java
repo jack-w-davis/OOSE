@@ -1,4 +1,3 @@
-package davis.jack.mazegame;
 public class DoorParser extends GameObjParser
 {
     public static final String PATTERN = "(D[HV])(\\s+\\d){3}";
