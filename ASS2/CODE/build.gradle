@@ -9,7 +9,7 @@ repositories {
 }
 
 application {
-    mainClass = 'edu.curtin.app.App'
+    mainClass = 'jwdavis.Simulator'
 }
 
 tasks.run.configure {
