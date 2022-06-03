@@ -1,6 +1,6 @@
 package jwdavis.parser;
 
-import jwdavis.emergency.*;
+import jwdavis.*;
 import java.util.stream.Collectors;
 import java.util.regex.*;
 import java.io.*;

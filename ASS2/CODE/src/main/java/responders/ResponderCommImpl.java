@@ -1,4 +1,4 @@
-package edu.curtin.emergencysim.responders;
+package jwdavis.responders;
 import java.util.*;
 import java.util.regex.*;
 
@@ -82,12 +82,13 @@ public class ResponderCommImpl implements ResponderComm
             List<String> newEvents = new ArrayList<>();            
             while(!events.isEmpty() && events.get(0).time <= elapsedSecs)
             {
-                REvent ev = events.remove(0);        
-                String msg = String.format(
-                    "%s %c %s",
-                    ev.type,
-                    ev.arriving ? '+' : '-',
-                    ev.location);                
+                REvent ev = events.remove(0);      
+
+                String msg = String.format("%s %c %s",
+                                            ev.type,
+                                            ev.arriving ? '+' : '-',
+                                            ev.location);   
+
                 newEvents.add(msg);
             }
             return newEvents;

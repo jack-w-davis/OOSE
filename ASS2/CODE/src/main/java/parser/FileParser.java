@@ -2,7 +2,7 @@ package jwdavis.parser;
 
 import java.util.stream.Collectors;
 
-import jwdavis.emergency.Emergency;
+import jwdavis.*;
 import jwdavis.parser.EmergencyParser;
 import jwdavis.state.State;
 
@@ -33,7 +33,7 @@ public class FileParser
         }
     }
 
-    public List<Emergency<? extends State>> parseCollection(Collection<String> lines)
+    public List<Emergency> parseCollection(Collection<String> lines)
     {
         for(String line: lines)
         {

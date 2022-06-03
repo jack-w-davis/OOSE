@@ -4,6 +4,10 @@ plugins {
     id 'pmd'
 }
 
+test {
+    useJUnitPlatform()
+}
+
 repositories {
     mavenCentral()
 }

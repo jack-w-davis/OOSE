@@ -1,17 +1,37 @@
 package jwdavis.state;
 
-import jwdavis.emergency.Emergency;
+import jwdavis.*;
 
 public abstract class State
 {
-    private Emergency<? extends State> context = null;
-    
-    abstract public String getType(); 
+    public Emergency context;
 
-    public void setContext(Emergency<? extends State> inContext)
+    public State()
+    {
+        this.context = null;
+    }
+
+    public void updateTime(int curTime)
+    {
+        if(curTime == context.getStartTime()){
+            emergencyBegin();
+        }
+    }
+
+    public void setContext(Emergency inContext)
     {
         this.context = inContext;
     }
 
+    public Emergency getContext()
+    {
+        return context;
+    }
     
+    /**
+     * This method is used to actually 'start' an emergency.
+     */
+    
+    abstract protected void emergencyBegin();
+    abstract public String getType();    
 }

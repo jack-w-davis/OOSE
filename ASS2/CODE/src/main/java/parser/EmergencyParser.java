@@ -2,7 +2,7 @@ package jwdavis.parser;
 
 import java.util.stream.Collectors;
 
-import jwdavis.emergency.Emergency;
+import jwdavis.*;
 
 import java.util.regex.*;
 import java.io.*;

@@ -1,5 +1,7 @@
-package edu.curtin.emergencysim.responders;
+package jwdavis.responders;
+
 import java.util.*;
+
 public interface ResponderComm
 {
     List<String> poll();
