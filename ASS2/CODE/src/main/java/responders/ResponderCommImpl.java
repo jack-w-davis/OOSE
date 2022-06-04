@@ -35,7 +35,7 @@ public class ResponderCommImpl implements ResponderComm
 
     // We'll provide an 'end' message (to shut down the simulation) after this many seconds.
 //     private static final long DURATION = 1000;
-    private static final long DURATION = 30;
+    private static final long DURATION = 45;
     
     // We need to keep track of time here, to work out what message to return from poll() at which 
     // point.
@@ -108,10 +108,10 @@ public class ResponderCommImpl implements ResponderComm
         }
         
         String emergency = m.group("emergency");
-        String status = m.group("status");
-        String lossType = m.group("lossType");
+        String status    = m.group("status");
+        String lossType  = m.group("lossType");
         String lossCount = m.group("lossCount");
-        String location = m.group("location");
+        String location  = m.group("location");
                 
         System.out.printf("%s at %s: ", emergency, location);
         if(status != null)

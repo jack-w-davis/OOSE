@@ -26,6 +26,18 @@ public class Emergency implements Observer, Observable
     {
         this.state = inState;
     }
+    
+    public void setCurTime(int inCurTime)
+    {
+        this.curTime = inCurTime;
+        state.contextChange();
+    }
+
+    public void setAttended(boolean inAttend)
+    {
+        this.attended = inAttend;
+        state.contextChange();
+    }
 
     public String getLocation()
     {
@@ -50,12 +62,6 @@ public class Emergency implements Observer, Observable
     public String getType()
     {
         return state.getType();
-    }
-
-    public void setCurTime(int inCurTime)
-    {
-        this.curTime = inCurTime;
-        state.contextChange();
     }
 
     public boolean isAttended()

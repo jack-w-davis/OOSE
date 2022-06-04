@@ -1,13 +1,13 @@
-package jwdavis.state.flood;
+package jwdavis.state.chemical;
 
 import jwdavis.Emergency;
 import jwdavis.state.State;
 
-public class Flood extends State
+public class Spill extends State
 {
-    public static final String EMERGENCY_TYPE = "flood";
+    public static final String EMERGENCY_TYPE = "spill";
 
-    public Flood(){}
+    public Spill(){}
 
     @Override
     public String getType()
@@ -20,7 +20,7 @@ public class Flood extends State
     {
         if(getContext().getCurTime() == getContext().getStartTime())
         {
-            ActiveFlood newState = new ActiveFlood();
+            ActiveSpill newState = new ActiveSpill();
             newState.setContext(getContext());
             getContext().setState(newState);
             System.out.println("REMOVE ME " + getContext().getType());
