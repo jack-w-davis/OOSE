@@ -4,19 +4,14 @@ import jwdavis.*;
 
 public abstract class State
 {
-    public Emergency context;
+    private Emergency context;
 
-    public State()
-    {
-        this.context = null;
-    }
+    abstract public String getType(); 
+    //Was just called notify, turns out Java Objects already have a method
+    //called notify, therefore it's now called contextChange  
+    abstract public void contextChange();
 
-    public void updateTime(int curTime)
-    {
-        if(curTime == context.getStartTime()){
-            emergencyBegin();
-        }
-    }
+    public State(){}
 
     public void setContext(Emergency inContext)
     {
@@ -27,11 +22,4 @@ public abstract class State
     {
         return context;
     }
-    
-    /**
-     * This method is used to actually 'start' an emergency.
-     */
-    
-    abstract protected void emergencyBegin();
-    abstract public String getType();    
 }

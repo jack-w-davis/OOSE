@@ -5,14 +5,16 @@ import jwdavis.*;
 import jwdavis.parser.*;
 import jwdavis.state.fire.*;
 import jwdavis.state.*;
+import jwdavis.observers.*;
 
 import jwdavis.responders.*;
 
 import java.lang.Thread;  
 import java.util.stream.Collectors;
 import java.util.regex.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.*;
-import java.util.*;
 import java.util.logging.Logger;
 
 public class Simulator
@@ -37,15 +39,24 @@ public class Simulator
 
 
         // responderShennanigans();
-        fireTest();
-
+        // fireTest();
+        fireTestOld();
     }
 
     public static void fireTest()
     {
-
         Emergency e = new Emergency(new Fire(), 3, "Perth");
 
+        e.setCurTime(3);
+    }
+
+    public static void fireTestOld()
+    {
+        // subscribers
+        List<Observer> obs = new ArrayList<>();
+
+        Emergency e = new Emergency(new Fire(), 3, "Perth");
+        obs.add(e);
 
         int seconds = 0;
         int inc     = 1;
@@ -55,41 +66,48 @@ public class Simulator
             try 
             {
                 System.out.printf("%ds:\n",seconds);
-                e.currentTime(seconds);
+                e.setCurTime(seconds);
                 seconds += inc;
-                Thread.sleep(1000 * inc);
-
-                
+                Thread.sleep(1000 * inc);                
             } catch (InterruptedException except) {}
         }
 
     }
 
-    public static void fileSim()
-    {
-        ResponderComm res = new ResponderCommImpl();
 
-        int seconds = 0;
-        int inc     = 1;
+    // public static void notifyObservers(List<Observer> obs, int time)
+    // {
+    //     for(Observer o: obs)
+    //     {
+    //         o.setCurTime(time);
+    //     }
+    // }
 
-        while(seconds < 60)
-        {
-            try 
-            {
-                System.out.printf("%ds:\n",seconds);
-                for(String mess: res.poll())
-                {
-                    System.out.printf("      %s\n",mess);    
-                }
-                seconds += inc;
-                Thread.sleep(1000 * inc);
+    // public static void fileSim()
+    // {
+    //     ResponderComm res = new ResponderCommImpl();
 
-            } 
-            catch (InterruptedException e) 
-            {
-                //TODO: handle exception
-            }
-        }
-    }
+    //     int seconds = 0;
+    //     int inc     = 1;
+
+    //     while(seconds < 60)
+    //     {
+    //         try 
+    //         {
+    //             System.out.printf("%ds:\n",seconds);
+    //             for(String mess: res.poll())
+    //             {
+    //                 System.out.printf("      %s\n",mess);    
+    //             }
+    //             seconds += inc;
+    //             Thread.sleep(1000 * inc);
+
+    //         } 
+    //         catch (InterruptedException e) 
+    //         {
+    //             //TODO: handle exception
+    //         }
+    //     }
+    // }
 }
 
