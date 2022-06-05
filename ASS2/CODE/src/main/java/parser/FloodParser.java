@@ -10,16 +10,22 @@ import java.util.*;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 
-public class FloodParser extends LineParser
+public class FloodParser implements StateParser
 {
-    public static final String PATTERN = "flood";
+    public static final String LABEL = "flood";
 
     public FloodParser(){}
 
     @Override
-    public String getPattern()
+    public String getLabel()
     {
-        return PATTERN;
+        return LABEL;
+    }
+
+    @Override
+    public Flood getState()
+    {
+        return new Flood();
     }
     
 }

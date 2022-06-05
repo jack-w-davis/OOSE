@@ -1,7 +1,9 @@
 package jwdavis.parser;
 
 import jwdavis.*;
-import jwdavis.state.flood.Flood;
+import jwdavis.state.fire.Fire;
+import jwdavis.state.State;
+
 
 import java.util.stream.Collectors;
 import java.util.regex.*;
@@ -10,7 +12,8 @@ import java.util.*;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 
-public interface TokenParser<T>
+public interface StateParser
 {
-    T parseToken(String token);
+    String getLabel();
+    State getState();
 }

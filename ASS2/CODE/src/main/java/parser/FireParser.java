@@ -10,20 +10,20 @@ import java.util.*;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 
-public class FireParser extends LineParser
+public class FireParser implements StateParser
 {
-    public static final String PATTERN = "fire";
+    public static final String LABEL = "fire";
 
     public FireParser(){}
 
     @Override
-    public String getPattern()
+    public String getLabel()
     {
-        return PATTERN;
+        return LABEL;
     }
 
     @Override
-    public Fire parseState(String line)
+    public Fire getState()
     {
         return new Fire();
     }

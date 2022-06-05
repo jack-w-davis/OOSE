@@ -2,7 +2,6 @@ package jwdavis.parser;
 
 
 import jwdavis.*;
-import jwdavis.parser.LineParser;
 import jwdavis.state.State;
 import jwdavis.utils.Map2D;
 
@@ -11,51 +10,62 @@ import java.util.stream.Collectors;
 import java.util.regex.*;
 import java.util.*;
 import java.util.logging.Logger;
-import java.util.ArrayList;
 
 public class FileParser 
 {
-    private List<LineParser> parsers;
+    private Map<String,StateParser> parsers;
 
     public FileParser()
     {
-        parsers = new ArrayList<>();
+        parsers = new HashMap<>();
     }
 
     /**
-     * Adds LineParsers for the fileParser to use. Each LineParser
+     * Adds StateParsers for the fileParser to use. Each StateParser
      * corresponds to a possible emergency, Fire, Chemical, Flood.
      */
-    public void addLineParser(LineParser... lineParsers)
+    public void addStateParser(StateParser... stateParsers)
     {
-        for(LineParser parser: lineParsers)
+        for(StateParser p: stateParsers)
         {
-            this.parsers.add(parser);
+            this.parsers.put(p.getLabel().toLowerCase(),p);
         }
     }
 
-    public Map2D<String,String,Integer> parseFile(List<String> lines)
+    public Map2D<String,String,Emergency> parseFile(List<String> lines)
     {
-        Map2D<String,String,Integer> emergencies = new Map2D<>();
-
+        Map2D<String,String,Emergency> emergencies = new Map2D<>();
         for(String line: lines)
         {
-            parseLine(line);            
+            parseLine(line,emergencies);            
         }
 
         return emergencies;
     }
 
-    public void parseLine(String line)
+    /**
+     * parses a line into an Emergency Object
+     */
+    public void parseLine(String line, Map2D<String,String,Emergency> emergencies)
     {
-        System.out.println(line);
-        for(LineParser ep: parsers)
+        String[] tokens = line.split(" ",3);
+        
+        try
         {
-            if(line.matches(ep.getRegexString()))
-            {
-                System.out.printf(" -- I MATCH %s\n",ep.getPattern());
-                ep.parseLine(line);
-            }
+            int time = Integer.parseInt(tokens[0]);
+            String type = tokens[1].trim().toLowerCase();
+            State state = parsers.get(type).getState();
+            String location = tokens[2].trim();
+
+            emergencies.put(                       
+                location.toLowerCase(),              // Key1: Location   
+                type.toLowerCase(),                  // Key2: Type (Fire,Spill,Flood)
+                new Emergency(time, state,location));// Value: The emergency itself
+        }
+        catch(NullPointerException e)
+        {
+            //TODO: Log me here & throw my own excepion relating to 
+            //the line not matching or something
         }
     }
 }

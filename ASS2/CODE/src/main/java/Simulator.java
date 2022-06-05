@@ -33,10 +33,12 @@ public class Simulator
             
             FileParser fp = new FileParser();
             
-            fp.addLineParser(new FireParser(),
-                             new FloodParser());
+            fp.addStateParser(new FireParser(),
+                              new FloodParser());
 
-            fp.parseFile(fileContent);
+            Map2D<String,String,Emergency> em = fp.parseFile(fileContent);
+        
+            
         }
         else
         {
