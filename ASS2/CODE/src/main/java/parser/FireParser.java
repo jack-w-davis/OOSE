@@ -1,6 +1,8 @@
 package jwdavis.parser;
 
 import jwdavis.*;
+import jwdavis.state.fire.Fire;
+
 import java.util.stream.Collectors;
 import java.util.regex.*;
 import java.io.*;
@@ -8,19 +10,11 @@ import java.util.*;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 
-public class FireParser extends EmergencyParser
+public class FireParser extends LineParser
 {
     public static final String PATTERN = "fire";
 
     public FireParser(){}
-
-    @Override
-    public String buildPattern()
-    {
-        return String.format("%s %s %s", getStartPattern(),
-                                         getPattern(),
-                                         getEndPattern());
-    }
 
     @Override
     public String getPattern()
@@ -29,8 +23,9 @@ public class FireParser extends EmergencyParser
     }
 
     @Override
-    public Emergency parseLine(String line)
+    public Fire parseState(String line)
     {
-        return null;
+        return new Fire();
     }
+
 }

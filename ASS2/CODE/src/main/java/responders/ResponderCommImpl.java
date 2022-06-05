@@ -35,7 +35,7 @@ public class ResponderCommImpl implements ResponderComm
 
     // We'll provide an 'end' message (to shut down the simulation) after this many seconds.
 //     private static final long DURATION = 1000;
-    private static final long DURATION = 45;
+    private static final long DURATION = 60;
     
     // We need to keep track of time here, to work out what message to return from poll() at which 
     // point.
@@ -48,20 +48,27 @@ public class ResponderCommImpl implements ResponderComm
     public ResponderCommImpl()
     {
         startTime = System.currentTimeMillis();        
-//         events.add(new REvent(100, "fire", true, "Midtown"));
-//         events.add(new REvent(125, "fire", false, "Midtown"));
-//         events.add(new REvent(130, "fire", true, "Hill Valley"));
-//         events.add(new REvent(250, "fire", false, "Hill Valley"));
-//         events.add(new REvent(250, "flood", true, "Westtown"));
-//         events.add(new REvent(260, "fire", true, "Midtown"));
-//         events.add(new REvent(550, "fire", false, "Midtown"));        
-        events.add(new REvent(10, "fire", true, "Midtown"));
-        events.add(new REvent(12, "fire", false, "Midtown"));
-        events.add(new REvent(13, "fire", true, "Hill Valley"));
-        events.add(new REvent(25, "fire", false, "Hill Valley"));
-        events.add(new REvent(25, "flood", true, "Westtown"));
-        events.add(new REvent(26, "fire", true, "Midtown"));
-        events.add(new REvent(55, "fire", false, "Midtown"));        
+//         events.add(new REvent(100, "fire", true, "Perth"));
+//         events.add(new REvent(125, "fire", false, "Perth"));
+//         events.add(new REvent(130, "fire", true, "Sydney"));
+//         events.add(new REvent(250, "fire", false, "Sydney"));
+//         events.add(new REvent(250, "flood", true, "Melbourne"));
+//         events.add(new REvent(260, "fire", true, "Perth"));
+//         events.add(new REvent(550, "fire", false, "Perth"));        
+        // events.add(new REvent(10, "fire",  true,  "Perth"));
+        // events.add(new REvent(12, "fire",  false, "Perth"));
+        // events.add(new REvent(13, "fire",  true,  "Sydney"));
+        // events.add(new REvent(25, "fire",  false, "Sydney"));
+        // events.add(new REvent(25, "flood", true,  "Melbourne"));
+        // events.add(new REvent(26, "fire",  true,  "Perth"));
+        // events.add(new REvent(55, "fire",  false, "Perth"));
+        events.add(new REvent(10, "fire",  true,  "Perth"));
+        events.add(new REvent(12, "fire",  false, "Perth"));
+        events.add(new REvent(13, "fire",  true,  "Sydney"));
+        events.add(new REvent(25, "fire",  false, "Sydney"));
+        events.add(new REvent(25, "flood", true,  "Melbourne"));
+        events.add(new REvent(26, "fire",  true,  "Perth"));
+        events.add(new REvent(55, "fire",  false, "Perth"));        
         // ...
     }
 

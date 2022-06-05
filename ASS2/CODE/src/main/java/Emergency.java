@@ -12,7 +12,7 @@ public class Emergency implements Observer, Observable
     private int     stateChangeTime;
     private boolean attended;
 
-    public Emergency(State inState, int inStartTime, String inLocation)
+    public Emergency(int inStartTime,State inState, String inLocation)
     {
         this.state = inState;
         this.state.setContext(this);

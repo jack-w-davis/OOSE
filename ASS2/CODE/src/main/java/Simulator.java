@@ -1,6 +1,7 @@
 package jwdavis;
 
-import jwdavis.utils.*;
+import jwdavis.utils.IO;
+import jwdavis.utils.Map2D;
 import jwdavis.*;
 import jwdavis.parser.*;
 import jwdavis.state.*;
@@ -25,98 +26,95 @@ public class Simulator
 {
     public static void main(String[] args)
     {
-        // List<String> list = IO.readFile(args[0]);
+        //If the program doesn't have any args specified it can't run
+        if(0 < args.length)
+        {
+            List<String> fileContent = IO.readFileToList(args[0]);
+            
+            FileParser fp = new FileParser();
+            
+            fp.addLineParser(new FireParser(),
+                             new FloodParser());
 
-        // FileParser fp = new FileParser();
+            fp.parseFile(fileContent);
+        }
+        else
+        {
+            //TODO: Throw error here
+        }
+    }
 
-        // fp.addEmergencyParser(new FireParser(),
-        //                       new FloodParser());
+    // public static void fireTest()
+    // {
+    //     Emergency e = new Emergency(new Fire(), 3, "Perth");
 
-        // fp.parseCollection(list);
+    //     e.setCurTime(3);
+    // }
 
+    // public static void fireTestOld()
+    // {
+    //     // subscribers
+    //     List<Emergency> obs = new ArrayList<>();
 
-        // Emergency<Fire> e = new Emergency<>(new Fire(), 5, "Perth");
-        // System.out.println(e.getType());
+    //     Emergency fire  = new Emergency(new Fire(),  2,"Perth");
+    //     Emergency flood = new Emergency(new Flood(), 5,"Sydney");
+    //     Emergency spill = new Emergency(new Spill(), 5,"Melbourne");
+
+    //     obs.add(fire);
+    //     obs.add(flood);
+    //     obs.add(spill);
+
+    //     int seconds = 0;
+    //     int inc     = 1;
         
-        // e.setState(new FireLow());
-        // System.out.println(e.getType());
+    //     while(seconds < 60)
+    //     {
+    //         try 
+    //         {
+    //             System.out.printf("%ds:\n",seconds);
+    //             notifyObservers(obs, seconds);
+    //             seconds += inc;
+    //             Thread.sleep(1000 * inc);                
+    //         } catch (InterruptedException except) {}
+    //     }
 
-        fileSim();
-        // fireTest();
-        // fireTestOld();
-    }
-
-    public static void fireTest()
-    {
-        Emergency e = new Emergency(new Fire(), 3, "Perth");
-
-        e.setCurTime(3);
-    }
-
-    public static void fireTestOld()
-    {
-        // subscribers
-        List<Emergency> obs = new ArrayList<>();
-
-        Emergency fire  = new Emergency(new Fire(),  3,"Perth");
-        Emergency flood = new Emergency(new Flood(), 5,"Sydney");
-        Emergency spill = new Emergency(new Spill(), 5,"Melbourne");
-
-        obs.add(fire);
-        obs.add(flood);
-        obs.add(spill);
-
-        int seconds = 0;
-        int inc     = 1;
-        
-        while(seconds < 60)
-        {
-            try 
-            {
-                System.out.printf("%ds:\n",seconds);
-                notifyObservers(obs, seconds);
-                seconds += inc;
-                Thread.sleep(1000 * inc);                
-            } catch (InterruptedException except) {}
-        }
-
-    }
+    // }
 
 
-    public static void notifyObservers(List<Emergency> emergencies, int time)
-    {
-        for(Emergency em: emergencies)
-        {
-            em.setCurTime(time);
-        }
-    }
+    // public static void notifyObservers(List<Emergency> emergencies, int time)
+    // {
+    //     for(Emergency em: emergencies)
+    //     {
+    //         em.setCurTime(time);
+    //     }
+    // }
 
-    public static void fileSim()
-    {
-        //Of type ResponderComm and not it's implementation
-        ResponderComm res = new ResponderCommImpl();
+    // public static void fileSim()
+    // {
+    //     //Of type ResponderComm and not it's implementation
+    //     ResponderComm res = new ResponderCommImpl();
 
-        int seconds = 0;
-        int inc     = 1;
+    //     int seconds = 0;
+    //     int inc     = 1;
 
-        while(seconds < 60)
-        {
-            try 
-            {
-                System.out.printf("%ds:\n",seconds);
-                for(String mess: res.poll())
-                {
-                    System.out.printf("      %s\n",mess);    
-                }
-                seconds += inc;
-                Thread.sleep(1000 * inc);
+    //     while(seconds < 60)
+    //     {
+    //         try 
+    //         {
+    //             System.out.printf("%ds:\n",seconds);
+    //             for(String mess: res.poll())
+    //             {
+    //                 System.out.printf("      %s\n",mess);    
+    //             }
+    //             seconds += inc;
+    //             Thread.sleep(1000 * inc);
 
-            } 
-            catch (InterruptedException e) 
-            {
-                //TODO: handle exception
-            }
-        }
-    }
+    //         } 
+    //         catch (InterruptedException e) 
+    //         {
+    //             //TODO: handle exception
+    //         }
+    //     }
+    // }
 }
 

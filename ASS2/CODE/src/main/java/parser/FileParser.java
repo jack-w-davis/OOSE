@@ -1,20 +1,21 @@
 package jwdavis.parser;
 
-import java.util.stream.Collectors;
 
 import jwdavis.*;
-import jwdavis.parser.EmergencyParser;
+import jwdavis.parser.LineParser;
 import jwdavis.state.State;
+import jwdavis.utils.Map2D;
 
-import java.util.regex.*;
 import java.io.*;
+import java.util.stream.Collectors;
+import java.util.regex.*;
 import java.util.*;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 
 public class FileParser 
 {
-    private List<EmergencyParser> parsers;
+    private List<LineParser> parsers;
 
     public FileParser()
     {
@@ -22,33 +23,35 @@ public class FileParser
     }
 
     /**
-     * @param ep an array of parsers to add to the fileparser
-     * 
+     * Adds LineParsers for the fileParser to use. Each LineParser
+     * corresponds to a possible emergency, Fire, Chemical, Flood.
      */
-    public void addEmergencyParser(EmergencyParser... ep)
+    public void addLineParser(LineParser... lineParsers)
     {
-        for(EmergencyParser parser: ep)
+        for(LineParser parser: lineParsers)
         {
             this.parsers.add(parser);
         }
     }
 
-    public List<Emergency> parseCollection(Collection<String> lines)
+    public Map2D<String,String,Integer> parseFile(List<String> lines)
     {
+        Map2D<String,String,Integer> emergencies = new Map2D<>();
+
         for(String line: lines)
         {
             parseLine(line);            
         }
 
-        return null;
+        return emergencies;
     }
 
     public void parseLine(String line)
     {
         System.out.println(line);
-        for(EmergencyParser ep: parsers)
+        for(LineParser ep: parsers)
         {
-            if(line.matches(ep.buildPattern()))
+            if(line.matches(ep.getRegexString()))
             {
                 System.out.printf(" -- I MATCH %s\n",ep.getPattern());
                 ep.parseLine(line);
