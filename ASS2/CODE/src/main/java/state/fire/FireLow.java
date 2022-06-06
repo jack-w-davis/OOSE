@@ -1,8 +1,8 @@
 package jwdavis.state.fire;
 
-import jwdavis.state.State;
-import jwdavis.state.End;
+import java.lang.Math;
 
+import jwdavis.state.State;
 import jwdavis.state.fire.FireHigh;
 
 public class FireLow extends Fire
@@ -34,5 +34,34 @@ public class FireLow extends Fire
                 getContext().setState(new FireHigh());
             }
         }
+    }
+
+    @Override
+    public void tick()
+    {
+        if(newCasualty())
+        {
+            numCasualties++;
+            getContext().notifyObserver(String.format("fire casualty %d %s",
+                                                       numCasualties ,
+                                                       getContext().getLocation()));
+        }
+        if(newDamage())
+        {
+            numDamage++;
+            getContext().notifyObserver(String.format("fire damage %d %s",
+                                                       numDamage ,
+                                                       getContext().getLocation()));
+        }
+    }
+    
+    public boolean newCasualty()
+    {
+        return Math.random() < LOW_CASUALTY_PROB;
+    }
+
+    public boolean newDamage()
+    {
+        return Math.random() < LOW_DAMAGE_PROB;
     }
 }

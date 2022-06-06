@@ -7,6 +7,8 @@ import jwdavis.state.flood.ActiveFlood;
 public class Flood extends State
 {
     public static final String EMERGENCY_TYPE = "flood";
+    protected int numCasualties = 0;
+    protected int numDamage = 0;
 
     public Flood(){}
 
@@ -23,8 +25,12 @@ public class Flood extends State
         {
             getContext().setState(new ActiveFlood());
             getContext().notifyObserver("flood start "+ getContext().getLocation());
-
         }
+    }
+
+    @Override
+    public void tick()
+    {
     }
 }
 

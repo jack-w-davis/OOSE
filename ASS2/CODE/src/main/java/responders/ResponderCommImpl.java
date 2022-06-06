@@ -48,21 +48,13 @@ public class ResponderCommImpl implements ResponderComm
     public ResponderCommImpl()
     {
         startTime = System.currentTimeMillis();        
-//         events.add(new REvent(100, "fire", true, "Midtown"));
-//         events.add(new REvent(125, "fire", false, "Midtown"));
-//         events.add(new REvent(130, "fire", true, "Hill Valley"));
-//         events.add(new REvent(250, "fire", false, "Hill Valley"));
-//         events.add(new REvent(250, "flood", true, "Westtown"));
-//         events.add(new REvent(260, "fire", true, "Midtown"));
-//         events.add(new REvent(550, "fire", false, "Midtown"));   
 
-        events.add(new REvent(5, "chemical", true, "Midtown"));
-        // events.add(new REvent(13, "fire", true, "Hill Valley"));
-        // events.add(new REvent(25, "fire", false, "Hill Valley"));
-        // events.add(new REvent(25, "flood", true, "Westtown"));
-        // events.add(new REvent(26, "fire", true, "Midtown"));
-        // events.add(new REvent(55, "fire", false, "Midtown"));        
-        // ...
+        events.add(new REvent(13, "fire", true, "Midtown"));
+        events.add(new REvent(15, "fire", false, "Hill Valley"));
+        events.add(new REvent(17, "chemical", true, "Midtown"));
+        events.add(new REvent(25, "fire", true, "Hill Valley"));
+        events.add(new REvent(25, "flood", true, "WestTown"));
+        events.add(new REvent(26, "fire", true, "Midtown"));
     }
 
     /**
@@ -120,7 +112,7 @@ public class ResponderCommImpl implements ResponderComm
         }
         else
         {
-            System.out.printf("%s #%s", lossType, lossCount);
+            System.out.printf("%s #%s\n", lossType, lossCount);
         }
     }
 }

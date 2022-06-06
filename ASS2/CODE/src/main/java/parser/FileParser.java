@@ -36,6 +36,10 @@ public class FileParser
         }
     }
 
+    /**
+     * parses a collection of strings (i.e. a files content) into a map of
+     * emergencies.
+     */
     public Map2D<String,String,Emergency> parseFile(Collection<String> lines)
     {
         Map2D<String,String,Emergency> emergencies = new Map2D<>();
@@ -46,7 +50,7 @@ public class FileParser
                 parseLine(line,emergencies);            
             }
             else
-            { logger.info("Invalid Emergency '" + line + "' was not parsed"); }
+            { logger.warning("Invalid Emergency '" + line + "' was not parsed"); }
         }
 
         return emergencies;
@@ -75,9 +79,7 @@ public class FileParser
         }
         catch(NullPointerException e)
         {
-            logger.info("Invalid Emergency '" + line + "' was not parsed");
-            //TODO: Log me here & throw my own excepion relating to 
-            //the line not matching or something
+            logger.warning("Invalid Emergency '" + line + "' was not parsed");
         }
     }
 }

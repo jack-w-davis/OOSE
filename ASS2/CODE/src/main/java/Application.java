@@ -19,8 +19,16 @@ public class Application
         {
             FileParser fp = initFileParser();
             Map2D<String,String,Emergency> map = readEmergenciesFromFile(args[0], fp);
-            Simulator sim = new Simulator(map.values(), new ResponderCommImpl());
-            sim.start();
+            List<Emergency> emergencies = map.values();
+            if(0 < emergencies.size())
+            {
+                Simulator sim = new Simulator(emergencies, new ResponderCommImpl());
+                sim.start();
+            }
+            else
+            {
+                System.out.println("Error, please enter a valid file");
+            }
         }
         else
         {
@@ -30,7 +38,6 @@ public class Application
 
     /**
      * creates the fileParser for the simulator to use
-     * TODO: make me a better explanation
      */
     public static FileParser initFileParser()
     {
@@ -39,7 +46,8 @@ public class Application
                                             //--------------------
         fp.addStateParser(new FireParser(), // '\d+ fire .+'
                           new FloodParser(),// '\d+ flood .+'
-                          new ChemParser());// '\d+ chemical .+'
+                          new ChemParser()
+                          );// '\d+ chemical .+'
         return fp;
     }
 

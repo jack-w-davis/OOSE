@@ -7,6 +7,8 @@ import jwdavis.state.fire.FireLow;
 public class Fire extends State
 {
     public static final String EMERGENCY_TYPE = "fire";
+    protected int numCasualties = 0;
+    protected int numDamage = 0;
 
     public Fire()
     {}
@@ -26,5 +28,9 @@ public class Fire extends State
             getContext().notifyObserver("fire low "+ getContext().getLocation());
         }
     }
+
+    @Override
+    public void tick(){}
+
 }
 

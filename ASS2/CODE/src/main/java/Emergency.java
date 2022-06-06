@@ -1,10 +1,8 @@
 package jwdavis;
 
 import jwdavis.state.State;
-import jwdavis.observers.Observer;
 import jwdavis.Simulator;
 import jwdavis.observers.ContextObserver;
-import jwdavis.observers.Observable;
 import java.util.logging.*;
 import java.util.regex.Matcher;
 
@@ -15,12 +13,14 @@ public class Emergency implements ContextObserver
     @SuppressWarnings("PMD.FieldNamingConventions")
     private static final Logger logger = Logger.getLogger(Emergency.class.getName());
 
+    private int     startTime;
     private State   state;
     private String  location;
-    private int     startTime; //TODO: Maybe refactor and remove me
+
     private int     curTime;
     private int     stateChangeTime;
     private boolean attended;
+
     private Simulator observer;
 
     public Emergency(int inStartTime,State inState, String inLocation)
@@ -39,14 +39,14 @@ public class Emergency implements ContextObserver
     {
         observer = inSimulator;
     }
-    
+
     /**
      * This is used to recieve updates from the subject 
      * {@link jwdavis.Simulator#Simulator() Simulator},as per Slide 11 of Lecture 4 
      * "In the Observer Pattern... There’s no selection. Subjects call all 
-     * registered observers". So cohering tothe Observer Pattern, all observers 
-     * recieve the message, which is whythis method parses the message and uses 
-     * the location/type to figure outif it's the intended recipient.
+     * registered observers". So cohering to the Observer Pattern, all observers 
+     * recieve the message, which is why this method parses the message and uses 
+     * the location/type to figure out if it's the intended recipient.
      * 
      * Since we don't have to use threads this makes it somewhat messy as really
      * these Emergencies could just have their own thread and keep track of the
@@ -54,35 +54,22 @@ public class Emergency implements ContextObserver
      */
     public void update(String message)
     {
-        Matcher matchTime     = TIME_PATTERN.matcher(message);
         Matcher matchAttended = ATTENDED_PATTERN.matcher(message);
 
-        if (matchTime.matches())
+        if(matchAttended.matches())
         {
-            updateCurTime(Integer.parseInt(message));
-        }
-        else if(matchAttended.matches())
-        {
-            System.out.println(message);
             String messLoc = matchAttended.group("location");
             String messType = matchAttended.group("type");
             boolean messAtt = matchAttended.group("attended").equals("+");
 
-            System.out.println("-"+messLoc+"-");
-            System.out.println("-"+location+"-");
-            System.out.println("-"+getType()+"-");
-            System.out.println("-"+messType+"-");
-            System.out.println("-"+messAtt+"-");
-
             if(location.equals(messLoc) && state.getType().equals(messType))
             {
-                System.out.println("update");
                 updateAttended(messAtt);
             }
         }
         else
         {
-            //TODO: throw exception
+            logger.warning(String.format("message '%s' did not match expected messages",message));
         }
     }
 
@@ -91,9 +78,15 @@ public class Emergency implements ContextObserver
         observer.update(message);
     }
 
+    /**
+     * this updates the current time (in seconds) since since the simulator has
+     * started. it also notifies the inner state that something has changed by 
+     * calling contextChange().
+     */
     public void updateCurTime(int inCurTime)
     {
         this.curTime = inCurTime;
+        state.tick();
         state.contextChange();
     }
 

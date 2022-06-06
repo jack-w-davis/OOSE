@@ -63,7 +63,6 @@ public class Simulator implements EmergencyObserver
         }
     }
 
-
     /**
      * The following method is used to remove an observer from the list of
      * current observers. The reason it copies the list and then removes the 
@@ -80,6 +79,10 @@ public class Simulator implements EmergencyObserver
         observers = list;
     }
 
+    /**
+     *  starts the simulation. The simulation proceeds until the message 'end'
+     * is recieved from the responders.
+     */
     public void start()
     {
         long startTime = System.currentTimeMillis();        
@@ -91,31 +94,41 @@ public class Simulator implements EmergencyObserver
                 poll();
                 Thread.sleep(1000);                
                 elapsedSecs = (System.currentTimeMillis() - startTime) / 1000L;
-                notifyObservers(""+elapsedSecs);
+                notifyTime((int) elapsedSecs);
             } 
             catch (InterruptedException e) 
             {     /*TODO: handle exception*/}
         }
     }
 
+    /**
+     * A wrapper for the {@link jwdavis.responders.Responder#poll()} method.
+     * this polls any messages the responders have sent and then deals with it
+     * appropiately.
+     */
     public void poll()
     {
         for(String mess: res.poll())
         {
-            logger.info(String.format("POLL(%d) : %s",(int)elapsedSecs,mess));
-
             if(mess.matches("end"))
             {
-                //TODO: end stuff here
+                endRecieved = true;
             }
             else
             {
-                notifyObservers(mess);
+                notifyMessage(mess);
             }
+
+            logger.info(String.format("POLL(%d) : %s",(int)elapsedSecs,mess));
         }
     }
 
-    public void notifyObservers(String message)
+    /**
+     * Notifies observers (emergencies) of:
+     *  - Responders arriving.
+     *  - The time updating (each second).
+     */
+    public void notifyMessage(String message)
     {
         for(ContextObserver o: observers)
         {
@@ -123,67 +136,24 @@ public class Simulator implements EmergencyObserver
         }
     }
 
-    public void send()
+    public void notifyTime(int time)
     {
-
+        for(ContextObserver o: observers)
+        {
+            o.updateCurTime(time);
+        }
     }
-    
+
     /**
-     * When an Emergency updates it's status this recieves it and
+     * When an Emergency status changes it notifies the simulator (an observer)
+     * and sends then this calls send to send to the responders. The emergencies
+     * report their status to the simulator and not the responders themselves
+     * so that if need be, in the future this can be updated to change how/what
+     * message is sent. I.E. what if the responders change halfway throughout
+     * the simulation.
      */
     public void update(String message)
     {
         res.send(message);
     }
-
 }
-
-
-    // public static void main(String[] args)
-    // {
-    //     //If the program doesn't have any args specified it can't run
-    //     if(0 < args.length)
-    //     {
-    //         List<String> fileContent = IO.readFileToList(args[0]);
-            
-    //         FileParser fp = new FileParser();
-
-    //         fp.addStateParser(new FireParser(),
-    //                           new FloodParser(),
-    //                           new ChemParser());
-
-    //         Map2D<String,String,Emergency> em = fp.parseFile(fileContent);
-
-    //         long startTime = System.currentTimeMillis();        
-    //         long elapsedSecs = 0;
-
-    //         ResponderComm res = new ResponderCommImpl();
-    //         while(elapsedSecs < 60)
-    //         {
-    //             try 
-    //             {
-    //                 System.out.printf("%ds:\n",elapsedSecs);
-    //                 for(String mess: res.poll())
-    //                 {
-    //                     // System.out.printf("      %s\n",mess);    
-    //                 }
-    //                 elapsedSecs = (System.currentTimeMillis() - startTime) / 1000L;
-    //                 Thread.sleep(1000);
-
-    //             } 
-    //             catch (InterruptedException e) 
-    //             {
-    //                 //TODO: handle exception
-    //             }
-    //         }
-    //     }
-    // }
-
-    // public static void notifyObservers(List<Emergency> emergencies, int time)
-    // {
-    //     for(Emergency em: emergencies)
-    //     {
-    //         em.setCurTime(time);
-    //     }
-    // }
-// }

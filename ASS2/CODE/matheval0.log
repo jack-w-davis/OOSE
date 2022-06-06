@@ -1,18 +1,14 @@
-Jun 06, 2022 9:52:29 PM jwdavis.parser.FileParser addStateParser
+Jun 06, 2022 11:39:20 PM jwdavis.parser.FileParser addStateParser
 INFO: Added stateParser: fire
-Jun 06, 2022 9:52:29 PM jwdavis.parser.FileParser addStateParser
+Jun 06, 2022 11:39:20 PM jwdavis.parser.FileParser addStateParser
 INFO: Added stateParser: flood
-Jun 06, 2022 9:52:29 PM jwdavis.parser.FileParser addStateParser
+Jun 06, 2022 11:39:20 PM jwdavis.parser.FileParser addStateParser
 INFO: Added stateParser: chemical
-Jun 06, 2022 9:52:29 PM jwdavis.parser.FileParser parseFile
-INFO: Invalid Emergency 'aaa5 fire Midtown' was not parsed
-Jun 06, 2022 9:52:29 PM jwdavis.parser.FileParser parseFile
-INFO: Invalid Emergency '  aa7 fire Hill Valley' was not parsed
-Jun 06, 2022 9:52:29 PM jwdavis.parser.FileParser parseFile
-INFO: Invalid Emergency '  3 flood WestTown' was not parsed
-Jun 06, 2022 9:52:29 PM jwdavis.parser.FileParser parseLine
+Jun 06, 2022 11:39:20 PM jwdavis.parser.FileParser parseLine
+INFO: Parsed emergency: 5 fire Midtown
+Jun 06, 2022 11:39:20 PM jwdavis.parser.FileParser parseLine
+INFO: Parsed emergency: 7 fire Hill Valley
+Jun 06, 2022 11:39:20 PM jwdavis.parser.FileParser parseLine
+INFO: Parsed emergency: 3 flood WestTown
+Jun 06, 2022 11:39:20 PM jwdavis.parser.FileParser parseLine
 INFO: Parsed emergency: 3 chemical Midtown
-Jun 06, 2022 9:52:34 PM jwdavis.Simulator poll
-INFO: POLL(5) : chemical + Midtown
-Jun 06, 2022 9:52:34 PM jwdavis.Emergency updateAttended
-INFO: chemical at Midtown is attended

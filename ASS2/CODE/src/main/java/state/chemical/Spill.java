@@ -25,5 +25,10 @@ public class Spill extends State
             getContext().notifyObserver("chemical start "+ getContext().getLocation());
         }
     }
+
+    @Override
+    public void tick()
+    {
+    }
 }
 
