@@ -1,9 +1,14 @@
 package jwdavis.state;
 
+import java.util.logging.Logger;
+
 import jwdavis.*;
 
 public abstract class State
 {
+    @SuppressWarnings("PMD.FieldNamingConventions")
+    private static final Logger logger = Logger.getLogger(State.class.getName());
+
     private Emergency context;
 
     abstract public String getType(); 

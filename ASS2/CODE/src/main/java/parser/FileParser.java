@@ -32,7 +32,7 @@ public class FileParser
         }
     }
 
-    public Map2D<String,String,Emergency> parseFile(List<String> lines)
+    public Map2D<String,String,Emergency> parseFile(Collection<String> lines)
     {
         Map2D<String,String,Emergency> emergencies = new Map2D<>();
         for(String line: lines)

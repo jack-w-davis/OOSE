@@ -1,3 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.43.0" timestamp="2022-06-05T01:19:10.615">
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.43.0" timestamp="2022-06-05T10:39:35.220">
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/EmergencyFactory.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="23" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="EmergencyFactory" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.utils.*'
+</violation>
+<violation beginline="4" endline="4" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="EmergencyFactory" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unnecessary import from the current package 'jwdavis.*'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/Simulator.java">
+<violation beginline="5" endline="5" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unnecessary import from the current package 'jwdavis.*'
+</violation>
+<violation beginline="7" endline="7" begincolumn="1" endcolumn="23" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.state.*'
+</violation>
+<violation beginline="8" endline="8" begincolumn="1" endcolumn="28" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.state.fire.*'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="29" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.state.flood.*'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="32" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.state.chemical.*'
+</violation>
+<violation beginline="13" endline="13" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.observers.*'
+</violation>
+<violation beginline="15" endline="15" begincolumn="1" endcolumn="28" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.responders.*'
+</violation>
+<violation beginline="17" endline="17" begincolumn="1" endcolumn="24" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.lang.Thread'
+</violation>
+<violation beginline="18" endline="18" begincolumn="1" endcolumn="35" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.stream.Collectors'
+</violation>
+<violation beginline="19" endline="19" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.regex.*'
+</violation>
+<violation beginline="20" endline="20" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.ArrayList'
+</violation>
+<violation beginline="23" endline="23" begincolumn="1" endcolumn="32" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis" class="Simulator" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.logging.Logger'
+</violation>
+<violation beginline="45" endline="47" begincolumn="9" endcolumn="9" rule="EmptyIfStmt" ruleset="Error Prone" package="jwdavis" class="Simulator" method="main" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_errorprone.html#emptyifstmt" priority="3">
+Avoid empty if statements
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/parser/ChemParser.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="ChemParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.*'
+</violation>
+<violation beginline="6" endline="6" begincolumn="1" endcolumn="35" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="ChemParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.stream.Collectors'
+</violation>
+<violation beginline="7" endline="7" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="ChemParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.regex.*'
+</violation>
+<violation beginline="8" endline="8" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="ChemParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.io.*'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="19" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="ChemParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.*'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="32" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="ChemParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.logging.Logger'
+</violation>
+<violation beginline="11" endline="11" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="ChemParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.ArrayList'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/parser/FileParser.java">
+<violation beginline="8" endline="8" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FileParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.io.*'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="35" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FileParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.stream.Collectors'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FileParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.regex.*'
+</violation>
+<violation beginline="12" endline="12" begincolumn="1" endcolumn="32" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FileParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.logging.Logger'
+</violation>
+<violation beginline="65" endline="65" begincolumn="15" endcolumn="34" rule="AvoidCatchingNPE" ruleset="Error Prone" package="jwdavis.parser" class="FileParser" method="parseLine" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_errorprone.html#avoidcatchingnpe" priority="3">
+Avoid catching NullPointerException; consider removing the cause of the NPE.
+</violation>
+<violation beginline="65" endline="65" begincolumn="15" endcolumn="34" rule="AvoidCatchingGenericException" ruleset="Design" package="jwdavis.parser" class="FileParser" method="parseLine" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_design.html#avoidcatchinggenericexception" priority="3">
+Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+</violation>
+<violation beginline="65" endline="69" begincolumn="9" endcolumn="9" rule="EmptyCatchBlock" ruleset="Error Prone" package="jwdavis.parser" class="FileParser" method="parseLine" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/parser/FireParser.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FireParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.*'
+</violation>
+<violation beginline="6" endline="6" begincolumn="1" endcolumn="35" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FireParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.stream.Collectors'
+</violation>
+<violation beginline="7" endline="7" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FireParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.regex.*'
+</violation>
+<violation beginline="8" endline="8" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FireParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.io.*'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="19" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FireParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.*'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="32" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FireParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.logging.Logger'
+</violation>
+<violation beginline="11" endline="11" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FireParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.ArrayList'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/parser/FloodParser.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FloodParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.*'
+</violation>
+<violation beginline="6" endline="6" begincolumn="1" endcolumn="35" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FloodParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.stream.Collectors'
+</violation>
+<violation beginline="7" endline="7" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FloodParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.regex.*'
+</violation>
+<violation beginline="8" endline="8" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FloodParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.io.*'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="19" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FloodParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.*'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="32" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FloodParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.logging.Logger'
+</violation>
+<violation beginline="11" endline="11" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="FloodParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.ArrayList'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/parser/StateParser.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="StateParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.*'
+</violation>
+<violation beginline="4" endline="4" begincolumn="1" endcolumn="31" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="StateParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.state.fire.Fire'
+</violation>
+<violation beginline="8" endline="8" begincolumn="1" endcolumn="35" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="StateParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.stream.Collectors'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="StateParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.regex.*'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="StateParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.io.*'
+</violation>
+<violation beginline="11" endline="11" begincolumn="1" endcolumn="19" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="StateParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.*'
+</violation>
+<violation beginline="12" endline="12" begincolumn="1" endcolumn="32" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="StateParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.logging.Logger'
+</violation>
+<violation beginline="13" endline="13" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.parser" class="StateParser" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.ArrayList'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/responders/ResponderCommImpl.java">
+<violation beginline="18" endline="18" begincolumn="9" endcolumn="18" rule="CommentDefaultAccessModifier" ruleset="Code Style" package="jwdavis.responders" class="ResponderCommImpl$REvent" variable="VariableDeclaratorId" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#commentdefaultaccessmodifier" priority="3">
+To avoid mistakes add a comment at the beginning of the time field if you want a default access modifier
+</violation>
+<violation beginline="19" endline="19" begincolumn="9" endcolumn="20" rule="CommentDefaultAccessModifier" ruleset="Code Style" package="jwdavis.responders" class="ResponderCommImpl$REvent" variable="VariableDeclaratorId" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#commentdefaultaccessmodifier" priority="3">
+To avoid mistakes add a comment at the beginning of the type field if you want a default access modifier
+</violation>
+<violation beginline="20" endline="20" begincolumn="9" endcolumn="25" rule="CommentDefaultAccessModifier" ruleset="Code Style" package="jwdavis.responders" class="ResponderCommImpl$REvent" variable="VariableDeclaratorId" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#commentdefaultaccessmodifier" priority="3">
+To avoid mistakes add a comment at the beginning of the arriving field if you want a default access modifier
+</violation>
+<violation beginline="21" endline="21" begincolumn="9" endcolumn="24" rule="CommentDefaultAccessModifier" ruleset="Code Style" package="jwdavis.responders" class="ResponderCommImpl$REvent" variable="VariableDeclaratorId" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#commentdefaultaccessmodifier" priority="3">
+To avoid mistakes add a comment at the beginning of the location field if you want a default access modifier
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/state/End.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="17" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.state" class="End" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.*'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/state/chemical/ActiveSpill.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.state.chemical" class="ActiveSpill" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.Emergency'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/state/chemical/Spill.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.state.chemical" class="Spill" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.Emergency'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/state/fire/Fire.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.state.fire" class="Fire" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.Emergency'
+</violation>
+<violation beginline="5" endline="5" begincolumn="1" endcolumn="34" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.state.fire" class="Fire" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unnecessary import from the current package 'jwdavis.state.fire.FireLow'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/state/fire/FireHigh.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.state.fire" class="FireHigh" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.state.State'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/state/fire/FireLow.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="27" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.state.fire" class="FireLow" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.state.State'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/state/flood/ActiveFlood.java">
+<violation beginline="4" endline="4" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.state.flood" class="ActiveFlood" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.Emergency'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/state/flood/Flood.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.state.flood" class="Flood" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'jwdavis.Emergency'
+</violation>
+</file>
+<file name="/mnt/w/Uni Work/2022/S1/OOSE/ASS2/CODE/src/main/java/utils/IO.java">
+<violation beginline="4" endline="4" begincolumn="1" endcolumn="25" rule="UnnecessaryImport" ruleset="Code Style" package="jwdavis.utils" class="IO" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_codestyle.html#unnecessaryimport" priority="4">
+Unused import 'java.util.regex.*'
+</violation>
+<violation beginline="12" endline="12" begincolumn="33" endcolumn="38" rule="UnusedPrivateField" ruleset="Best Practices" package="jwdavis.utils" class="IO" variable="logger" externalInfoUrl="https://pmd.github.io/pmd-6.43.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'logger'.
+</violation>
+</file>
 </pmd>

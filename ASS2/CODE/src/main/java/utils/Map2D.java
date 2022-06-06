@@ -35,6 +35,16 @@ public class Map2D<K,L,V>
         return contains;
     }
 
+    public V remove(K key1, L key2)
+    {
+        V value = m.get(key1).remove(key2);
+        if(m.get(key1).size() == 0)
+        {
+            m.remove(key1);
+        }
+        return value;
+    }
+    
     public V get(K key1, L key2)
     {
         V retVal = null;
@@ -43,5 +53,37 @@ public class Map2D<K,L,V>
             retVal = m.get(key1).get(key2);
         }
         return retVal;
+    }
+
+    public Set<K> key1Set()
+    {
+        return m.keySet();
+    }
+
+    public Set<L> key2Set(K key1)
+    {
+        Set<L> s = new HashSet<>();
+
+        if(m.containsKey(key1))
+        {
+            s = m.get(key1).keySet();
+        }
+        
+        return s;
+    }
+
+
+    public List<V> values()
+    {
+        List<V> list = new ArrayList<>(); 
+        for(Map<L,V> inner: m.values())
+        {
+            for(V value: inner.values())
+            {
+                list.add(value);
+            }
+        }
+
+        return list;
     }
 }

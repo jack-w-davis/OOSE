@@ -8,7 +8,8 @@ public class Fire extends State
 {
     public static final String EMERGENCY_TYPE = "fire";
 
-    public Fire(){}
+    public Fire()
+    {}
 
     @Override
     public String getType()
@@ -26,6 +27,7 @@ public class Fire extends State
             getContext().setState(fl);
             System.out.println("REMOVE ME " + getContext().getType());
         }
+        
     }
 }
 

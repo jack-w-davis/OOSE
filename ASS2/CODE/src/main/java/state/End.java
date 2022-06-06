@@ -4,7 +4,7 @@ import jwdavis.*;
 
 public class End extends State 
 {
-    public static final String EMERGENCY_TYPE = "spill";
+    public static final String EMERGENCY_TYPE = "end";
 
     public End(){}
 

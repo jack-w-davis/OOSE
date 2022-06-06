@@ -37,7 +37,6 @@ public class FireLow extends Fire
                 FireHigh newState = new FireHigh();
                 newState.setContext(getContext());
                 getContext().setState(newState);
-                System.out.println("REMOVE ME " + getContext().getType());
             }
         }
     }

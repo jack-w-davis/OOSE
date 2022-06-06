@@ -13,7 +13,7 @@ repositories {
 }
 
 application {
-    mainClass = 'jwdavis.Simulator'
+    mainClass = 'jwdavis.Application'
 }
 
 tasks.run.configure {
