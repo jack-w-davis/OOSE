@@ -22,12 +22,10 @@ public class Fire extends State
     {
         if(getContext().getCurTime() == getContext().getStartTime())
         {
-            FireLow fl = new FireLow();
-            fl.setContext(getContext());
-            getContext().setState(fl);
-            System.out.println("REMOVE ME " + getContext().getType());
+            getContext().setState(new FireLow());
+            getContext().notifyObserver("fire low "+ getContext().getLocation());
+
         }
-        
     }
 }
 

@@ -56,13 +56,15 @@ public class ResponderCommImpl implements ResponderComm
 //         events.add(new REvent(260, "fire", true, "Midtown"));
 //         events.add(new REvent(550, "fire", false, "Midtown"));   
 
-        events.add(new REvent(10, "fire", true, "Midtown"));
-        events.add(new REvent(12, "fire", false, "Midtown"));
-        events.add(new REvent(13, "fire", true, "Hill Valley"));
-        events.add(new REvent(25, "fire", false, "Hill Valley"));
-        events.add(new REvent(25, "flood", true, "Westtown"));
-        events.add(new REvent(26, "fire", true, "Midtown"));
-        events.add(new REvent(55, "fire", false, "Midtown"));        
+        // events.add(new REvent(10, "fire", true, "Midtown"));
+        events.add(new REvent(5, "flood", true, "Westtown"));
+
+        // events.add(new REvent(12, "fire", false, "Midtown"));
+        // events.add(new REvent(13, "fire", true, "Hill Valley"));
+        // events.add(new REvent(25, "fire", false, "Hill Valley"));
+        // events.add(new REvent(25, "flood", true, "Westtown"));
+        // events.add(new REvent(26, "fire", true, "Midtown"));
+        // events.add(new REvent(55, "fire", false, "Midtown"));        
         // ...
     }
 

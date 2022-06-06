@@ -1,10 +1,12 @@
 package jwdavis.state.fire;
 
 import jwdavis.state.State;
+import jwdavis.state.End;
+
+import jwdavis.state.fire.FireHigh;
 
 public class FireLow extends Fire
 {
-    public static final String EMERGENCY_TYPE    = "fire low";
     public static final int    LOW_TO_HIGH_TIME  = 3;
     public static final int    LOW_CLEANUP_TIME  = 5;
     public static final double LOW_CASUALTY_PROB = 0.2;
@@ -13,30 +15,23 @@ public class FireLow extends Fire
     public FireLow(){ }
 
     @Override
-    public String getType() 
-    { 
-        return EMERGENCY_TYPE; 
-    }
-
-    @Override
     public void contextChange()
     {
         int timePassed = getContext().getTimePassed();
-        
         if(getContext().isAttended())
         {            
             if(LOW_CLEANUP_TIME <= timePassed)
             {
-                System.out.println("FIRE OUT: SEND MESSAGE");
+                getContext().notifyObserver("fire end "+ getContext().getLocation());
+                getContext().getObserver().removeObserver(getContext());
             }
         }
         else
         {
             if(LOW_TO_HIGH_TIME <= timePassed)
             {
-                FireHigh newState = new FireHigh();
-                newState.setContext(getContext());
-                getContext().setState(newState);
+                getContext().notifyObserver("fire high "+ getContext().getLocation());
+                getContext().setState(new FireHigh());
             }
         }
     }

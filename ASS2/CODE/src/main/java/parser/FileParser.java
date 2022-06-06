@@ -37,6 +37,7 @@ public class FileParser
         Map2D<String,String,Emergency> emergencies = new Map2D<>();
         for(String line: lines)
         {
+            if(line.matches("\\d+ (fire|flood|chemical) .+"))
             parseLine(line,emergencies);            
         }
 

@@ -24,73 +24,117 @@ import java.util.List;
 import java.util.Collection;
 import java.util.logging.*;
 
-public class Simulator
+public class Simulator implements EmergencyObserver
 {
     @SuppressWarnings("PMD.FieldNamingConventions")
     private static final Logger logger = Logger.getLogger(Simulator.class.getName());
 
-    private Map2D<String,String,Emergency> observers;
+    private List<ContextObserver> observers;
     private ResponderComm res;
     private boolean endRecieved;
+    private long elapsedSecs;
 
-    public Simulator(Map2D<String,String,Emergency> inObservers, ResponderComm inRes)
+    public Simulator(List<Emergency> emergencies, ResponderComm inRes)
     {
-        this.observers = inObservers;
-        this.res = inRes;
         //this is set to false by default because logically you can't have
         //something that has ended before it has already begone
         this.endRecieved = false;
+        this.res = inRes;
+        this.elapsedSecs = 0;
+        setup(emergencies);
+
+    }
+
+    /**
+     * this set ups the relationship between the simulator and the emergencies
+     * 
+     * For the:
+     *  - Simulator: it subscribes the simulator to all the emergencies and
+     *               recieves updates based off the status of those emergencies
+     *               i.e. 'start', 'end', 'low', 'high'
+     */
+    private void setup(List<Emergency> emergencies)
+    {
+        observers = new ArrayList<>();
+        for(Emergency e: emergencies)
+        {
+            observers.add(e);
+            e.addObserver(this);
+        }
+    }
+
+
+    /**
+     * The following method is used to remove an observer from the list of
+     * current observers. The reason it copies the list and then removes the 
+     * observer from the new list is to avoid ConcurrentModificationException
+     * as the observer itself decides that it needs to be removed.
+     * 
+     * E.G. fire start -> low -> high -> responders arrive -> low -> end
+     * at end the observer removes itself
+     */
+    public void removeObserver(ContextObserver inObserver)
+    {
+        List<ContextObserver> list = new ArrayList<>(observers);
+        list.remove(inObserver);
+        observers = list;
     }
 
     public void start()
     {
         long startTime = System.currentTimeMillis();        
-        long elapsedSecs = 0;
 
         while(endRecieved == false)
         {
-            System.out.printf("%ds:\n",elapsedSecs);
             try 
             {
                 poll();
                 Thread.sleep(1000);                
                 elapsedSecs = (System.currentTimeMillis() - startTime) / 1000L;
-                // notifyObservers((int) elapsedSecs);
+                notifyObservers(""+elapsedSecs);
             } 
             catch (InterruptedException e) 
             {     /*TODO: handle exception*/}
-
         }
     }
 
-    private void poll()
+    public void poll()
     {
         for(String mess: res.poll())
         {
-            logger.log(Level.INFO,"POLL: " + mess);
+            logger.log(Level.INFO,String.format("POLL(%d) : %s",(int)elapsedSecs,mess));
+
             if(mess.matches("end"))
             {
                 //TODO: end stuff here
             }
             else
             {
-                
                 notifyObservers(mess);
             }
         }
     }
-    
+
     public void notifyObservers(String message)
     {
-        for(ContextObserver o: observers.values())
+        System.out.println(message);
+        for(ContextObserver o: observers)
         {
             o.update(message);
         }
     }
 
-    public void removeObserver(ContextObserver inObserver)
+    public void send()
     {
 
+    }
+    
+    /**
+     * When an Emergency updates it's status this recieves it and
+     */
+    public void update(String message)
+    {
+        res.send(message);
     }
 
 }

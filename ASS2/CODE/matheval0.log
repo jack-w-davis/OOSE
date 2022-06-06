@@ -1,6 +1,2 @@
-Jun 06, 2022 5:50:59 PM jwdavis.Simulator poll
-INFO: POLL: fire + Midtown
-Jun 06, 2022 5:50:59 PM jwdavis.Emergency updateAttended
-INFO: fire low at Midtown is not attended
-Jun 06, 2022 5:51:01 PM jwdavis.Simulator poll
-INFO: POLL: fire - Midtown
+Jun 06, 2022 8:35:15 PM jwdavis.Simulator poll
+INFO: POLL(5) : flood + Westtown

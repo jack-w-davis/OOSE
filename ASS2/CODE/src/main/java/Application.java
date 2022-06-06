@@ -19,7 +19,7 @@ public class Application
         {
             FileParser fp = initFileParser();
             Map2D<String,String,Emergency> map = readEmergenciesFromFile(args[0], fp);
-            Simulator sim = new Simulator(map, new ResponderCommImpl());
+            Simulator sim = new Simulator(map.values(), new ResponderCommImpl());
             sim.start();
         }
         else

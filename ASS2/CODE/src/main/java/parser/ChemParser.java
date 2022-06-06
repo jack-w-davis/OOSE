@@ -1,7 +1,7 @@
 package jwdavis.parser;
 
 import jwdavis.*;
-import jwdavis.state.fire.Fire;
+import jwdavis.state.chemical.Spill;
 
 import java.util.stream.Collectors;
 import java.util.regex.*;
@@ -23,9 +23,9 @@ public class ChemParser implements StateParser
     }
 
     @Override
-    public Fire getState()
+    public Spill getState()
     {
-        return new Fire();
+        return new Spill();
     }
 
 }

@@ -6,7 +6,10 @@ public class End extends State
 {
     public static final String EMERGENCY_TYPE = "end";
 
-    public End(){}
+    public End()
+    {
+        getContext().getObserver().removeObserver(getContext());
+    }
 
     @Override
     public String getType()
@@ -17,8 +20,7 @@ public class End extends State
     @Override
     public void contextChange()
     {
-        System.out.println("poop i'm end");
-        //Does nothing for now
+        
     }
 
 
