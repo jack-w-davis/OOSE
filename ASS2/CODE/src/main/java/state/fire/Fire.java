@@ -24,7 +24,6 @@ public class Fire extends State
         {
             getContext().setState(new FireLow());
             getContext().notifyObserver("fire low "+ getContext().getLocation());
-
         }
     }
 }

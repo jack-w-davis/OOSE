@@ -63,12 +63,20 @@ public class Emergency implements ContextObserver
         }
         else if(matchAttended.matches())
         {
+            System.out.println(message);
             String messLoc = matchAttended.group("location");
             String messType = matchAttended.group("type");
             boolean messAtt = matchAttended.group("attended").equals("+");
 
+            System.out.println("-"+messLoc+"-");
+            System.out.println("-"+location+"-");
+            System.out.println("-"+getType()+"-");
+            System.out.println("-"+messType+"-");
+            System.out.println("-"+messAtt+"-");
+
             if(location.equals(messLoc) && state.getType().equals(messType))
             {
+                System.out.println("update");
                 updateAttended(messAtt);
             }
         }
@@ -93,13 +101,14 @@ public class Emergency implements ContextObserver
     {
         this.attended = inAttend;
         state.contextChange();
+        this.stateChangeTime = this.curTime;
+
         logger.info(String.format("%s at %s %s attended",
                                    getType(),
                                    location,
                                    attended?"is":"is not"
                                    ));
     }
-
 
 //---------------------standard SETTERS/GETTERS---------------------------------
     public void setState(State inState)

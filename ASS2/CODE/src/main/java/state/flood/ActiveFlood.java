@@ -24,10 +24,8 @@ public class ActiveFlood extends Flood
     {
         if(FLOOD_END_TIME <= getContext().getTimePassed())
         {
-            State newState = new End();
-            newState.setContext(getContext());
-            getContext().setState(newState);
-            System.out.println("SPILL DONE");
+            getContext().notifyObserver("flood end "+ getContext().getLocation());
+            getContext().getObserver().removeObserver(getContext());
         }
     }
 }

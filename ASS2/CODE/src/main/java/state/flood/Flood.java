@@ -2,6 +2,7 @@ package jwdavis.state.flood;
 
 import jwdavis.Emergency;
 import jwdavis.state.State;
+import jwdavis.state.flood.ActiveFlood;
 
 public class Flood extends State
 {
@@ -20,10 +21,9 @@ public class Flood extends State
     {
         if(getContext().getCurTime() == getContext().getStartTime())
         {
-            ActiveFlood newState = new ActiveFlood();
-            newState.setContext(getContext());
-            getContext().setState(newState);
-            System.out.println("REMOVE ME " + getContext().getType());
+            getContext().setState(new ActiveFlood());
+            getContext().notifyObserver("flood start "+ getContext().getLocation());
+
         }
     }
 }

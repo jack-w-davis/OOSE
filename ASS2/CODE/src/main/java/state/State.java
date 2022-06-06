@@ -13,7 +13,7 @@ public abstract class State
 
     abstract public String getType(); 
     abstract public void contextChange();
-
+    abstract public void tick();
     public State(){}
 
     public void setContext(Emergency inContext)
@@ -25,5 +25,7 @@ public abstract class State
     {
         return context;
     }
+
+
 
 }

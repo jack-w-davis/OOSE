@@ -102,7 +102,7 @@ public class Simulator implements EmergencyObserver
     {
         for(String mess: res.poll())
         {
-            logger.log(Level.INFO,String.format("POLL(%d) : %s",(int)elapsedSecs,mess));
+            logger.info(String.format("POLL(%d) : %s",(int)elapsedSecs,mess));
 
             if(mess.matches("end"))
             {
@@ -117,7 +117,6 @@ public class Simulator implements EmergencyObserver
 
     public void notifyObservers(String message)
     {
-        System.out.println(message);
         for(ContextObserver o: observers)
         {
             o.update(message);

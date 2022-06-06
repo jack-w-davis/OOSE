@@ -13,6 +13,9 @@ import java.util.logging.Logger;
 
 public class FileParser 
 {
+    @SuppressWarnings("PMD.FieldNamingConventions")
+    private static final Logger logger = Logger.getLogger(FileParser.class.getName());
+
     private Map<String,StateParser> parsers;
 
     public FileParser()
@@ -29,6 +32,7 @@ public class FileParser
         for(StateParser p: stateParsers)
         {
             this.parsers.put(p.getLabel().toLowerCase(),p);
+            logger.info("Added stateParser: " + p.getLabel());
         }
     }
 
@@ -38,7 +42,11 @@ public class FileParser
         for(String line: lines)
         {
             if(line.matches("\\d+ (fire|flood|chemical) .+"))
-            parseLine(line,emergencies);            
+            {
+                parseLine(line,emergencies);            
+            }
+            else
+            { logger.info("Invalid Emergency '" + line + "' was not parsed"); }
         }
 
         return emergencies;
@@ -62,9 +70,12 @@ public class FileParser
                 location.toLowerCase(),              // Key1: Location   
                 type.toLowerCase(),                  // Key2: Type (Fire,Spill,Flood)
                 new Emergency(time, state,location));// Value: The emergency itself
+            
+            logger.info("Parsed emergency: " + line);
         }
         catch(NullPointerException e)
         {
+            logger.info("Invalid Emergency '" + line + "' was not parsed");
             //TODO: Log me here & throw my own excepion relating to 
             //the line not matching or something
         }

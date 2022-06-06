@@ -2,10 +2,11 @@ package jwdavis.state.chemical;
 
 import jwdavis.Emergency;
 import jwdavis.state.State;
+import jwdavis.state.chemical.ActiveSpill;
 
 public class Spill extends State
 {
-    public static final String EMERGENCY_TYPE = "spill";
+    public static final String EMERGENCY_TYPE = "chemical";
 
     public Spill(){}
 
@@ -20,10 +21,8 @@ public class Spill extends State
     {
         if(getContext().getCurTime() == getContext().getStartTime())
         {
-            ActiveSpill newState = new ActiveSpill();
-            newState.setContext(getContext());
-            getContext().setState(newState);
-            System.out.println("REMOVE ME " + getContext().getType());
+            getContext().setState(new ActiveSpill());
+            getContext().notifyObserver("chemical start "+ getContext().getLocation());
         }
     }
 }
