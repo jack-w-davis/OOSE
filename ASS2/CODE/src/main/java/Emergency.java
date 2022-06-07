@@ -1,7 +1,6 @@
 package jwdavis;
 
 import jwdavis.state.State;
-import jwdavis.Simulator;
 import jwdavis.observers.ContextObserver;
 import java.util.logging.*;
 import java.util.regex.Matcher;
@@ -52,6 +51,8 @@ public class Emergency implements ContextObserver
      * these Emergencies could just have their own thread and keep track of the
      * current time and whatever else.
      */
+    @Override
+    @SuppressWarnings("PMD.GuardLogStatementJavaUtil")
     public void update(String message)
     {
         Matcher matchAttended = ATTENDED_PATTERN.matcher(message);
@@ -69,10 +70,11 @@ public class Emergency implements ContextObserver
         }
         else
         {
-            logger.warning(String.format("message '%s' did not match expected messages",message));
+            String l = String.format("message '%s' did not match expected messages",message);
+            logger.warning(l);
         }
     }
-
+    
     public void notifyObserver(String message)
     {
         observer.update(message);
@@ -83,24 +85,25 @@ public class Emergency implements ContextObserver
      * started. it also notifies the inner state that something has changed by 
      * calling contextChange().
      */
+    @Override
     public void updateCurTime(int inCurTime)
     {
         this.curTime = inCurTime;
         state.tick();
         state.contextChange();
     }
-
+    
     public void updateAttended(boolean inAttend)
     {
         this.attended = inAttend;
         state.contextChange();
         this.stateChangeTime = this.curTime;
 
-        logger.info(String.format("%s at %s %s attended",
-                                   getType(),
-                                   location,
-                                   attended?"is":"is not"
-                                   ));
+        String l = String.format("%s at %s %s attended",
+                                  getType(),
+                                  location,
+                                  attended?"is":"is not");
+        logger.info(l);
     }
 
 //---------------------standard SETTERS/GETTERS---------------------------------

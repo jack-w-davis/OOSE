@@ -13,6 +13,7 @@ public class ResponderCommImpl implements ResponderComm
      * Convenience class for storing a fake incoming 'poll' message, and the time at which it is 
      * scheduled to be provided.
      */
+    @SuppressWarnings("PMD.CommentDefaultAccessModifier")
     private static class REvent
     {
         long time;

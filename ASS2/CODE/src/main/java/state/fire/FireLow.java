@@ -1,9 +1,5 @@
 package jwdavis.state.fire;
 
-import java.lang.Math;
-
-import jwdavis.state.State;
-import jwdavis.state.fire.FireHigh;
 
 public class FireLow extends Fire
 {

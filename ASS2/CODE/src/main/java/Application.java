@@ -1,14 +1,9 @@
 package jwdavis;
 
-//TODO: Rename utils to util
-import jwdavis.utils.IO;
-import jwdavis.utils.Map2D;
 import jwdavis.parser.*;
-import jwdavis.Emergency;
-import jwdavis.Simulator;
 import jwdavis.responders.*;
+import jwdavis.utils.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application 

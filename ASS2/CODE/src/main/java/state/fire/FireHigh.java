@@ -1,8 +1,5 @@
 package jwdavis.state.fire;
 
-import jwdavis.state.State;
-import java.util.Random;
-
 public class FireHigh extends Fire
 {
     public static final int    HIGH_TO_LOW_TIME   = 5;

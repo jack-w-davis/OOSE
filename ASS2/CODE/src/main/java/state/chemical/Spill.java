@@ -1,8 +1,6 @@
 package jwdavis.state.chemical;
 
-import jwdavis.Emergency;
 import jwdavis.state.State;
-import jwdavis.state.chemical.ActiveSpill;
 
 public class Spill extends State
 {

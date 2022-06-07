@@ -1,8 +1,6 @@
 package jwdavis.state.flood;
 
-import jwdavis.Emergency;
 import jwdavis.state.State;
-import jwdavis.state.flood.ActiveFlood;
 
 public class Flood extends State
 {

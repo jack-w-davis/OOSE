@@ -1,14 +1,10 @@
 package jwdavis.parser;
 
-
 import jwdavis.*;
+import java.util.*;
 import jwdavis.state.State;
 import jwdavis.utils.Map2D;
 
-import java.io.*;
-import java.util.stream.Collectors;
-import java.util.regex.*;
-import java.util.*;
 import java.util.logging.Logger;
 
 public class FileParser 
@@ -32,7 +28,8 @@ public class FileParser
         for(StateParser p: stateParsers)
         {
             this.parsers.put(p.getLabel().toLowerCase(),p);
-            logger.info("Added stateParser: " + p.getLabel());
+            String l = "Added stateParser: " + p.getLabel();
+            logger.info(l);
         }
     }
 
@@ -50,7 +47,10 @@ public class FileParser
                 parseLine(line,emergencies);            
             }
             else
-            { logger.warning("Invalid Emergency '" + line + "' was not parsed"); }
+            { 
+                String l = "Invalid Emergency '" + line + "' was not parsed";
+                logger.warning(l); 
+            }
         }
 
         return emergencies;
@@ -63,23 +63,17 @@ public class FileParser
     {
         String[] tokens = line.split(" ",3);
         
-        try
-        {
-            int time = Integer.parseInt(tokens[0]);
-            String type = tokens[1].trim().toLowerCase();
-            State state = parsers.get(type).getState();
-            String location = tokens[2].trim();
-
-            emergencies.put(                       
-                location.toLowerCase(),              // Key1: Location   
-                type.toLowerCase(),                  // Key2: Type (Fire,Spill,Flood)
-                new Emergency(time, state,location));// Value: The emergency itself
-            
-            logger.info("Parsed emergency: " + line);
-        }
-        catch(NullPointerException e)
-        {
-            logger.warning("Invalid Emergency '" + line + "' was not parsed");
-        }
+        int time = Integer.parseInt(tokens[0]);
+        String type = tokens[1].trim().toLowerCase();
+        State state = parsers.get(type).getState();
+        String location = tokens[2].trim();
+        
+        emergencies.put(                       
+            location.toLowerCase(),              // Key1: Location   
+            type.toLowerCase(),                  // Key2: Type (Fire,Spill,Flood)
+            new Emergency(time, state,location));// Value: The emergency itself
+        
+        String l = "Parsed emergency: " + line;
+        logger.info(l);
     }
 }

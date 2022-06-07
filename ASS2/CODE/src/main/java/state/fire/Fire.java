@@ -1,8 +1,6 @@
 package jwdavis.state.fire;
 
-import jwdavis.Emergency;
 import jwdavis.state.State;
-import jwdavis.state.fire.FireLow;
 
 public class Fire extends State
 {

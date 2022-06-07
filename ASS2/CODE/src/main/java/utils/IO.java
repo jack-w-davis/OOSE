@@ -1,16 +1,11 @@
 package jwdavis.utils;
 
 import java.util.stream.Collectors;
-import java.util.regex.*;
 import java.io.*;
 import java.util.*;
-import java.util.logging.Logger;
 
 public class IO 
 {
-    @SuppressWarnings("PMD.FieldNamingConventions")
-    private static final Logger logger = Logger.getLogger(IO.class.getName());
-
     public static final String PATTERN = "\\d+ (fire|flood|chemical) .+";
 
     /**

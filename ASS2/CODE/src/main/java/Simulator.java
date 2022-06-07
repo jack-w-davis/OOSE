@@ -1,27 +1,10 @@
 package jwdavis;
 
-import jwdavis.utils.IO;
-import jwdavis.utils.Map2D;
-import jwdavis.*;
-import jwdavis.parser.*;
-
-import jwdavis.state.*;
-import jwdavis.state.fire.*;
-import jwdavis.state.flood.*;
-import jwdavis.state.chemical.*;
-
 import jwdavis.observers.*;
-
 import jwdavis.responders.*;
 
-import java.io.*;
-import java.lang.Thread;  
-import java.util.stream.Collectors;
-import java.util.regex.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Collection;
 import java.util.logging.*;
 
 public class Simulator implements EmergencyObserver
@@ -119,7 +102,8 @@ public class Simulator implements EmergencyObserver
                 notifyMessage(mess);
             }
 
-            logger.info(String.format("POLL(%d) : %s",(int)elapsedSecs,mess));
+            String l = String.format("POLL(%d) : %s",(int)elapsedSecs,mess);
+            logger.info(l);
         }
     }
 
@@ -152,6 +136,7 @@ public class Simulator implements EmergencyObserver
      * message is sent. I.E. what if the responders change halfway throughout
      * the simulation.
      */
+    @Override
     public void update(String message)
     {
         res.send(message);
