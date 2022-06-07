@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'pmd'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'jwdavis.Application'
+}
+
+tasks.run.configure {
+    standardInput = System.in
+    systemProperties['java.util.logging.config.file'] = 'logging.properties'
+}
+
+compileJava {
+    options.compilerArgs << '-Xlint:all,-serial'
+}
+
+pmd {
+    consoleOutput = true
+    toolVersion = '6.43.0'
+    rulesMinimumPriority = 5
+    ruleSets = []
+    ruleSetFiles = files('oose-pmd-rules.xml')
+}

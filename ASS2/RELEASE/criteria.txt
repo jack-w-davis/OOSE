@@ -1,0 +1,112 @@
+1.
+    - the code is semi decently commented, theres are few areas where there
+      could be slightly better comments but i ran out of time.
+    
+    - there are no PMD violations.
+-------------------------------------------------------------------------------
+2.  
+    - the application contains packages which pretty clearly indicate what
+      classes are within them.
+
+    The following is a Tree Diagram of the project directory.
+
+    Base Folder
+├── Application.java
+├── Emergency.java
+├── Simulator.java
+├── observers
+│   ├── ContextObserver.java
+│   └── EmergencyObserver.java
+├── parser
+│   ├── ChemParser.java
+│   ├── FileParser.java
+│   ├── FireParser.java
+│   ├── FloodParser.java
+│   └── StateParser.java
+├── responders
+│   ├── ResponderComm.java
+│   └── ResponderCommImpl.java
+├── state
+│   ├── State.java
+│   ├── chemical
+│   │   ├── ActiveSpill.java
+│   │   └── Spill.java
+│   ├── fire
+│   │   ├── Fire.java
+│   │   ├── FireHigh.java
+│   │   └── FireLow.java
+│   └── flood
+│       ├── ActiveFlood.java
+│       └── Flood.java
+└── utils
+    ├── IO.java
+    └── Map2D.java
+
+ 
+-------------------------------------------------------------------------------
+3.
+    - logging is used within the application to denote key events, E.G.
+      * A state parser being added to 'File Parser'. 
+      * A line not being read because it's invalid.
+      * respondants coming/going
+
+-------------------------------------------------------------------------------  
+4.
+    - Dependency Injection is used within the program for the File Parser.
+      It contains a map object (Map<String,StateParser>) that is added to
+      at run time, via the addParser method.
+
+      Dependency Injection is also used for the simulator itself. it's two 
+      parameters are List<Emergency> and ResponderComm, so that at runtime these
+      two parameters can be changed.
+
+-------------------------------------------------------------------------------
+5.
+    - The observer pattern is used twice. For Emergency(sub) - Simulator(Obs)
+      & Simulator(sub) - Emergency(obs).
+
+      The simulator notifies the Emergency objects every second with the current
+      time (because we're not using MultiThreading and dealing with that/Mutexs
+      whatever else is out of the scope of this unit).
+
+      The emergency objects notifies the simulator of something happeneing 
+      like a fire going from low to high, or a building be damaged.
+      The simulator then sends that info to the responders. The reason the 
+      emergency don't send the info to the responders themselves is so that
+      the simulation can delegate how or what happens with the info (E.G. 
+      imagine a scenario in the future app where there is an incident at a pub
+      firefighters don't necessarily need to be updated about that).
+
+  
+-------------------------------------------------------------------------------
+6.
+
+    - The state pattern is used within the Emergency object. Each emergency
+      obj has a State obj, which in turn can of type Fire/Flood/Chemical.
+
+      The emergency object acts as the context and has general information 
+      which the state objects decides how to use. The Flood/Chemical states
+      only really have one state because the respondants being there or not
+      is a binary option for all emergencies, they are either there or they are
+      not. In hind sight i maybe should have made it so that was a state, but 
+      then that also doesn't promote code reuse, as then you end up essentially
+      doubling every exisiting state + whatever states may be added in the 
+      future. I.E. say a future update includes ambulances/paramedics, the state
+      of a human being is pretty complex, furthermore the state machine could
+      be combined with the decorator pattern for better code reuse + but also
+      retaining a lot of options.
+
+   
+-------------------------------------------------------------------------------
+7.
+    - see the uml folder.
+  
+-------------------------------------------------------------------------------
+8.
+    - Generics was used in the Map2D.java class. This is just my implementation
+      of a generic 2 key map. 
+
+      Please note a similar class was used in my first Assignment, per the
+      Academic Integrity rules i am just making that clear for the marker.
+      However it isn't exstensively used and is only used once.  
+
